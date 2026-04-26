@@ -1,299 +1,422 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Phillips Curve - AP Macroeconomics</title>
-<style>
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f0f4f8;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .presentation-container {
-        width: 800px;
-        max-width: 95vw;
-        height: 600px;
-        max-height: 90vh;
-        background: white;
-        border-radius: 10px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        position: relative;
-    }
-    .slide {
-        display: none;
-        padding: 40px;
-        flex-grow: 1;
-        min-height: 0; 
-        overflow-y: auto;
-        animation: fadeIn 0.5s;
-    }
-    .slide.active {
-        display: block;
-    }
-    .slide h2 {
-        color: #2c3e50;
-        border-bottom: 3px solid #9b59b6;
-        padding-bottom: 10px;
-        margin-top: 0;
-    }
-    .slide p, .slide ul {
-        font-size: 1.1em;
-        line-height: 1.6;
-        color: #34495e;
-    }
-    .slide li {
-        margin-bottom: 10px;
-    }
-    .graph-container {
-        text-align: center;
-        margin: 20px 0;
-    }
-    .controls {
-        background: #ecf0f1;
-        padding: 15px 40px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-shrink: 0; 
-        border-top: 1px solid #bdc3c7;
-    }
-    button {
-        background: #9b59b6;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        font-size: 1em;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-    button:hover {
-        background: #8e44ad;
-    }
-    button:disabled {
-        background: #bdc3c7;
-        cursor: not-allowed;
-    }
-    .progress {
-        font-weight: bold;
-        color: #7f8c8d;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    .highlight {
-        font-weight: bold;
-        color: #e74c3c;
-    }
-    .box-info {
-        background-color: #f5eef8;
-        border-left: 4px solid #9b59b6;
-        padding: 15px;
-        margin-top: 20px;
-        border-radius: 0 5px 5px 0;
-    }
-    /* Scrollbar styling */
-    .slide::-webkit-scrollbar { width: 8px; }
-    .slide::-webkit-scrollbar-thumb { background-color: #bdc3c7; border-radius: 4px; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Phillips Curve: AP Macroeconomics</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom slide transitions */
+        .slide-container {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+        .slide-container.active {
+            display: flex;
+            opacity: 1;
+        }
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        /* Graph Styles */
+        .axis-line { stroke: #cbd5e1; stroke-width: 2; }
+        .axis-text { fill: #cbd5e1; font-size: 14px; font-family: sans-serif; font-weight: bold;}
+        .srpc-curve { fill: none; stroke: #3b82f6; stroke-width: 4; stroke-linecap: round; }
+        .lrpc-line { stroke: #ef4444; stroke-width: 4; stroke-dasharray: 8, 4; }
+        .shift-arrow { stroke: #10b981; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+    </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-100 h-screen w-screen overflow-hidden flex flex-col font-sans selection:bg-blue-500 selection:text-white">
 
-<div class="presentation-container">
-    
-    <!-- Slide 1 -->
-    <div class="slide active">
-        <h2>1. Introduction to the Phillips Curve</h2>
-        <p>The <strong>Phillips Curve</strong> is a foundational macroeconomic model that illustrates the relationship between two key economic indicators:</p>
-        <ul>
-            <li><strong>Inflation Rate:</strong> Plotted on the vertical (Y) axis.</li>
-            <li><strong>Unemployment Rate:</strong> Plotted on the horizontal (X) axis.</li>
-        </ul>
-        <p>It helps us visualize the trade-offs policymakers face when trying to stabilize the economy.</p>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="slide">
-        <h2>2. The Short-Run Phillips Curve (SRPC)</h2>
-        <p>The SRPC demonstrates an <strong>inverse relationship (trade-off)</strong> between inflation and unemployment in the short run.</p>
-        <div class="graph-container">
-            <svg width="300" height="200" viewBox="0 0 250 200">
-                <!-- Axes -->
-                <line x1="30" y1="10" x2="30" y2="160" stroke="black" stroke-width="2"/>
-                <line x1="30" y1="160" x2="230" y2="160" stroke="black" stroke-width="2"/>
-                <!-- SRPC Curve -->
-                <path d="M 40 30 Q 80 120 200 140" fill="none" stroke="#3498db" stroke-width="3"/> 
-                <!-- Labels -->
-                <text x="205" y="145" font-size="12" fill="#3498db">SRPC</text>
-                <text x="-120" y="15" transform="rotate(-90)" font-size="12">Inflation Rate</text>
-                <text x="70" y="180" font-size="12">Unemployment Rate</text>
-            </svg>
+    <!-- Header/Navigation -->
+    <header class="flex justify-between items-center p-4 lg:p-6 w-full z-10 absolute top-0">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-600 text-white p-2 rounded-lg shadow-lg">
+                <i class="fa-solid fa-chart-line text-xl"></i>
+            </div>
+            <div>
+                <h1 class="text-xl font-bold tracking-tight">AP Macro Review</h1>
+                <p class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Unit 5: Stabilization Policies</p>
+            </div>
         </div>
-        <ul>
-            <li>When unemployment is high, inflation tends to be low.</li>
-            <li>When unemployment is low, inflation tends to be high.</li>
-        </ul>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="slide">
-        <h2>3. The Long-Run Phillips Curve (LRPC)</h2>
-        <p>In the long run, there is <strong>no trade-off</strong> between inflation and unemployment.</p>
-        <div class="graph-container">
-            <svg width="300" height="200" viewBox="0 0 250 200">
-                <!-- Axes -->
-                <line x1="30" y1="10" x2="30" y2="160" stroke="black" stroke-width="2"/>
-                <line x1="30" y1="160" x2="230" y2="160" stroke="black" stroke-width="2"/>
-                <!-- SRPC & LRPC -->
-                <path d="M 40 30 Q 80 120 200 140" fill="none" stroke="#3498db" stroke-width="3"/> 
-                <line x1="100" y1="20" x2="100" y2="160" stroke="#e74c3c" stroke-width="3"/> 
-                <!-- Dashed line for expected inflation -->
-                <line x1="30" y1="95" x2="100" y2="95" stroke="#7f8c8d" stroke-dasharray="4"/>
-                <circle cx="100" cy="95" r="4" fill="#2c3e50"/>
-                <!-- Labels -->
-                <text x="205" y="145" font-size="12" fill="#3498db">SRPC</text>
-                <text x="90" y="15" font-size="12" fill="#e74c3c">LRPC</text>
-                <text x="105" y="175" font-size="12" fill="#e74c3c">NRU</text>
-                <text x="-120" y="15" transform="rotate(-90)" font-size="12">Inflation Rate</text>
-            </svg>
+        <div class="text-sm font-medium text-slate-400 bg-slate-800/50 px-4 py-2 rounded-full hidden sm:block">
+            <span id="slide-indicator">Slide 1 / 8</span>
         </div>
-        <ul>
-            <li><strong>Shape:</strong> Vertical line anchored at the economy's Natural Rate of Unemployment (NRU).</li>
-            <li><strong>Intersection:</strong> The exact point where SRPC and LRPC intersect represents the <em>expected rate of inflation</em>.</li>
-        </ul>
-    </div>
+    </header>
 
-    <!-- Slide 4 -->
-    <div class="slide">
-        <h2>4. The Golden Rule: Movements vs. Shifts</h2>
-        <p>Knowing what causes a dot to slide along the curve vs. what shifts the entire curve is the most tested concept in Unit 5.</p>
-        <div class="box-info">
-            <p><strong>1. Movement ALONG the SRPC:</strong> Caused by a change in Aggregate Demand (AD).</p>
-            <p><strong>2. SHIFT of the entire SRPC:</strong> Caused by a change in Short-Run Aggregate Supply (SRAS) OR a change in Inflationary Expectations.</p>
+    <!-- Main Presentation Area -->
+    <main class="flex-grow flex items-center justify-center relative w-full h-full p-4 pt-20 pb-24">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide-container active flex-col items-center justify-center text-center max-w-4xl w-full" id="slide-1">
+            <div class="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-500/20 text-blue-400 font-semibold text-sm border border-blue-500/30">
+                Exam Prep 2026
+            </div>
+            <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400 leading-tight">
+                The Phillips Curve
+            </h1>
+            <p class="text-xl lg:text-2xl text-slate-300 mb-10 max-w-2xl font-light">
+                Mastering Inflation, Unemployment, and the graphs that will score you a 5 on the AP Exam.
+            </p>
+            <button onclick="nextSlide()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-blue-500/30 transition-all transform hover:scale-105 flex items-center gap-2">
+                Start Review <i class="fa-solid fa-arrow-right"></i>
+            </button>
         </div>
-        <ul>
-            <li><strong>AD Increases:</strong> Unemployment falls, inflation rises &rarr; Movement UP and LEFT along SRPC.</li>
-            <li><strong>AD Decreases:</strong> Unemployment rises, inflation falls &rarr; Movement DOWN and RIGHT along SRPC.</li>
-        </ul>
-    </div>
 
-    <!-- Slide 5 -->
-    <div class="slide">
-        <h2>5. Shifting the SRPC (Stagflation)</h2>
-        <p>Changes in Aggregate Supply (SRAS) cause the SRPC to shift in the <strong>opposite direction</strong>.</p>
-        <div class="graph-container">
-            <svg width="300" height="200" viewBox="0 0 250 200">
-                <!-- Axes -->
-                <line x1="30" y1="10" x2="30" y2="160" stroke="black" stroke-width="2"/>
-                <line x1="30" y1="160" x2="230" y2="160" stroke="black" stroke-width="2"/>
-                <!-- SRPC 1 & 2 -->
-                <path d="M 40 50 Q 80 140 200 150" fill="none" stroke="#3498db" stroke-width="2"/> 
-                <path d="M 70 20 Q 120 110 220 120" fill="none" stroke="#e74c3c" stroke-width="3"/> 
-                <!-- Shift Arrow -->
-                <line x1="90" y1="80" x2="130" y2="80" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
-                <defs>
-                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-                        <path d="M0,0 L0,6 L9,3 z" fill="black" />
-                    </marker>
-                </defs>
-                <!-- Labels -->
-                <text x="180" y="145" font-size="12" fill="#3498db">SRPC1</text>
-                <text x="210" y="110" font-size="12" fill="#e74c3c">SRPC2</text>
-                <text x="-120" y="15" transform="rotate(-90)" font-size="12">Inflation Rate</text>
-                <text x="70" y="180" font-size="12">Unemployment Rate</text>
-            </svg>
+        <!-- Slide 2: What is it? -->
+        <div class="slide-container flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl" id="slide-2">
+            <div class="w-full lg:w-1/2 space-y-6">
+                <h2 class="text-3xl lg:text-5xl font-bold text-white mb-2">The Basics</h2>
+                <div class="h-1 w-20 bg-blue-500 rounded-full mb-6"></div>
+                <p class="text-lg text-slate-300 leading-relaxed">
+                    The Phillips Curve is a foundational macroeconomic model that shows the relationship between the 
+                    <span class="text-emerald-400 font-bold">Inflation Rate</span> and the 
+                    <span class="text-blue-400 font-bold">Unemployment Rate</span>.
+                </p>
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-blue-500">
+                    <h3 class="font-bold text-xl mb-3"><i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-2"></i> Graphing Non-Negotiables:</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <strong>Y-Axis:</strong> Inflation Rate (NOT Price Level!)</li>
+                        <li><i class="fa-solid fa-check text-green-400 mr-2"></i> <strong>X-Axis:</strong> Unemployment Rate (NOT Real GDP!)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <div class="glass-panel p-4 rounded-2xl w-full max-w-md aspect-square flex items-center justify-center">
+                    <svg viewBox="0 0 400 400" class="w-full h-full">
+                        <!-- Axes -->
+                        <line x1="50" y1="50" x2="50" y2="350" class="axis-line" />
+                        <line x1="50" y1="350" x2="350" y2="350" class="axis-line" />
+                        <!-- Labels -->
+                        <text x="15" y="200" class="axis-text" transform="rotate(-90 20 200)">Inflation Rate</text>
+                        <text x="200" y="380" class="axis-text" text-anchor="middle">Unemployment Rate</text>
+                        <!-- Empty Graph Placeholder -->
+                    </svg>
+                </div>
+            </div>
         </div>
-        <ul>
-            <li><strong>Negative Supply Shock (SRAS &darr;):</strong> Creates stagflation. SRPC shifts to the <strong>RIGHT</strong> (higher inflation AND higher unemployment).</li>
-            <li><strong>Positive Supply Shock (SRAS &uarr;):</strong> SRPC shifts to the <strong>LEFT</strong>.</li>
-        </ul>
-    </div>
 
-    <!-- Slide 6 -->
-    <div class="slide">
-        <h2>6. Shifting the SRPC (Expectations)</h2>
-        <p>The second cause of a shift in the SRPC is a change in <strong>Inflationary Expectations</strong>.</p>
-        <ul>
-            <li>If consumers and businesses <em>expect</em> higher inflation in the future, they demand higher wages now.</li>
-            <li>This increases costs for businesses, shifting SRAS left.</li>
-            <li>As a result, the <strong>SRPC shifts UP (to the right)</strong>.</li>
-            <li>If expected inflation falls, the SRPC shifts DOWN (to the left).</li>
-        </ul>
-    </div>
-
-    <!-- Slide 7 -->
-    <div class="slide">
-        <h2>7. Long-Run Adjustment Process</h2>
-        <p>AP FRQs love to ask how the economy self-adjusts over time. Let's trace an <strong>Inflationary Gap</strong> scenario:</p>
-        <ol>
-            <li>Govt uses expansionary policy &rarr; AD shifts right.</li>
-            <li>Unemployment falls &rarr; Economy moves UP/LEFT along the SRPC.</li>
-            <li><strong>Over time:</strong> People adjust their expectations to the new, higher inflation level.</li>
-            <li>Workers demand higher wages &rarr; SRAS shifts left.</li>
-            <li>The <strong>SRPC shifts UP/RIGHT</strong>, returning the economy to the vertical LRPC (NRU), but permanently stuck with a higher inflation rate.</li>
-        </ol>
-    </div>
-
-    <!-- Slide 8 -->
-    <div class="slide">
-        <h2>8. AP Exam Tips & Graphing Precision</h2>
-        <div class="box-info">
-            <p><strong>Zero Point Danger:</strong> An unlabeled or mislabeled graph earns ZERO points on the FRQ!</p>
+        <!-- Slide 3: SRPC -->
+        <div class="slide-container flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl" id="slide-3">
+            <div class="w-full lg:w-1/2 space-y-6">
+                <h2 class="text-3xl lg:text-5xl font-bold text-white mb-2">Short-Run (SRPC)</h2>
+                <div class="h-1 w-20 bg-blue-500 rounded-full mb-6"></div>
+                <p class="text-lg text-slate-300 leading-relaxed">
+                    The <strong>Short-Run Phillips Curve (SRPC)</strong> slopes downward. 
+                </p>
+                <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
+                    <p class="text-slate-200">
+                        It demonstrates an <strong class="text-blue-400">inverse trade-off</strong> between inflation and unemployment in the short run. 
+                    </p>
+                    <ul class="mt-4 space-y-2 text-sm text-slate-400">
+                        <li><i class="fa-solid fa-arrow-up text-red-400 mr-1"></i> High Inflation = <i class="fa-solid fa-arrow-down text-green-400 mr-1"></i> Low Unemployment</li>
+                        <li><i class="fa-solid fa-arrow-down text-green-400 mr-1"></i> Low Inflation = <i class="fa-solid fa-arrow-up text-red-400 mr-1"></i> High Unemployment</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 flex justify-center">
+                <div class="glass-panel p-4 rounded-2xl w-full max-w-md aspect-square flex items-center justify-center">
+                    <svg viewBox="0 0 400 400" class="w-full h-full">
+                        <line x1="50" y1="50" x2="50" y2="350" class="axis-line" />
+                        <line x1="50" y1="350" x2="350" y2="350" class="axis-line" />
+                        <text x="15" y="200" class="axis-text" transform="rotate(-90 20 200)">Inflation Rate</text>
+                        <text x="200" y="380" class="axis-text" text-anchor="middle">Unemployment Rate</text>
+                        <!-- SRPC -->
+                        <path d="M 80 80 Q 200 200 320 320" class="srpc-curve" />
+                        <text x="330" y="330" class="axis-text" style="fill:#3b82f6;">SRPC</text>
+                    </svg>
+                </div>
+            </div>
         </div>
-        <ul>
-            <li><strong>Axes Labels:</strong> Must be "Inflation Rate" (Y) and "Unemployment Rate" (X). <em>Do not use Price Level and Real GDP here!</em></li>
-            <li><strong>Intersection:</strong> Clearly mark the intersection of SRPC and LRPC to show expected inflation.</li>
-            <li><strong>Plot Numbers:</strong> If a prompt gives you specific numerical values (e.g., "Assume a 5% natural rate of unemployment"), you <strong>must</strong> label the LRPC at the 5% mark on the X-axis.</li>
-        </ul>
-    </div>
 
-    <div class="controls">
-        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
-        <div class="progress" id="progressText">Slide 1 of 8</div>
-        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
-    </div>
+        <!-- Slide 4: AD Changes (Movement) -->
+        <div class="slide-container flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl" id="slide-4">
+            <div class="w-full lg:w-1/2 space-y-6">
+                <div class="inline-block px-3 py-1 rounded-md bg-yellow-500/20 text-yellow-400 font-bold text-xs uppercase tracking-wider">Crucial Exam Rule</div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-2">Movements vs. Shifts</h2>
+                <div class="h-1 w-20 bg-yellow-500 rounded-full mb-6"></div>
+                <p class="text-lg text-slate-300">
+                    Changes in <strong>Aggregate Demand (AD)</strong> cause a <em>movement along</em> the SRPC.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                    <div class="glass-panel p-4 rounded-xl border-t-4 border-t-emerald-500">
+                        <h4 class="font-bold text-emerald-400 mb-2">AD Increases</h4>
+                        <p class="text-sm text-slate-300">Unemployment falls, inflation rises.<br>→ <strong>Movement UP & LEFT</strong> on SRPC.</p>
+                    </div>
+                    <div class="glass-panel p-4 rounded-xl border-t-4 border-t-red-500">
+                        <h4 class="font-bold text-red-400 mb-2">AD Decreases</h4>
+                        <p class="text-sm text-slate-300">Unemployment rises, inflation falls.<br>→ <strong>Movement DOWN & RIGHT</strong> on SRPC.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 flex justify-center relative">
+                <div class="glass-panel p-4 rounded-2xl w-full max-w-md aspect-square flex items-center justify-center">
+                    <svg viewBox="0 0 400 400" class="w-full h-full">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                              <polygon points="0 0, 10 3.5, 0 7" fill="#10b981" />
+                            </marker>
+                            <marker id="arrowhead-red" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                <polygon points="0 0, 10 3.5, 0 7" fill="#ef4444" />
+                            </marker>
+                        </defs>
+                        <line x1="50" y1="50" x2="50" y2="350" class="axis-line" />
+                        <line x1="50" y1="350" x2="350" y2="350" class="axis-line" />
+                        <path d="M 80 80 Q 200 200 320 320" class="srpc-curve" />
+                        <!-- Points -->
+                        <circle cx="200" cy="200" r="6" fill="white" />
+                        <text x="215" y="205" class="axis-text" style="fill:white;">A</text>
+                        <!-- Arrows -->
+                        <path d="M 190 190 Q 150 150 120 120" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#arrowhead)" />
+                        <text x="130" y="100" class="axis-text" style="fill:#10b981;">AD ↑</text>
+                        
+                        <path d="M 210 210 Q 250 250 280 280" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrowhead-red)" />
+                        <text x="290" y="270" class="axis-text" style="fill:#ef4444;">AD ↓</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <!-- Slide 5: AS Changes (Shifts) -->
+        <div class="slide-container flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl" id="slide-5">
+            <div class="w-full lg:w-1/2 space-y-6">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-2">Shifting the SRPC</h2>
+                <div class="h-1 w-20 bg-purple-500 rounded-full mb-6"></div>
+                <p class="text-lg text-slate-300">
+                    The entire SRPC shifts due to two primary factors:
+                </p>
+                <div class="space-y-4">
+                    <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-purple-400 mb-1">1. Changes in SRAS</h4>
+                        <p class="text-sm text-slate-300">AS shifts cause SRPC to shift in the <strong>opposite direction</strong>.<br>
+                        <em>Example:</em> Negative supply shock (Stagflation) = SRAS ↓ = SRPC Shifts RIGHT.</p>
+                    </div>
+                    <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700">
+                        <h4 class="font-bold text-purple-400 mb-1">2. Inflationary Expectations</h4>
+                        <p class="text-sm text-slate-300">If people expect higher inflation, SRPC shifts UP/RIGHT.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full lg:w-1/2 flex justify-center relative">
+                <div class="glass-panel p-4 rounded-2xl w-full max-w-md aspect-square flex items-center justify-center">
+                    <svg viewBox="0 0 400 400" class="w-full h-full">
+                        <defs>
+                            <marker id="arrowhead-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                              <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7" />
+                            </marker>
+                        </defs>
+                        <line x1="50" y1="50" x2="50" y2="350" class="axis-line" />
+                        <line x1="50" y1="350" x2="350" y2="350" class="axis-line" />
+                        <path d="M 60 120 Q 150 210 270 300" class="srpc-curve" style="stroke: #64748b;" />
+                        <text x="270" y="320" class="axis-text" style="fill:#64748b;">SRPC 1</text>
+                        <!-- Shifted SRPC -->
+                        <path d="M 120 60 Q 210 150 330 240" class="srpc-curve" style="stroke: #a855f7;" />
+                        <text x="330" y="260" class="axis-text" style="fill:#a855f7;">SRPC 2</text>
+                        <!-- Arrow -->
+                        <path d="M 150 210 L 210 150" stroke="#a855f7" stroke-width="3" fill="none" marker-end="url(#arrowhead-purple)" />
+                    </svg>
+                </div>
+            </div>
+        </div>
 
-<script>
-    let currentSlideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
-    const progressText = document.getElementById('progressText');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+        <!-- Slide 6: LRPC -->
+        <div class="slide-container flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl" id="slide-6">
+            <div class="w-full lg:w-1/2 space-y-6">
+                <h2 class="text-3xl lg:text-5xl font-bold text-white mb-2">Long-Run (LRPC)</h2>
+                <div class="h-1 w-20 bg-red-500 rounded-full mb-6"></div>
+                <p class="text-lg text-slate-300">
+                    The <strong>Long-Run Phillips Curve (LRPC)</strong> is a <span class="text-red-400 font-bold">vertical line</span>.
+                </p>
+                <ul class="space-y-4 text-slate-300">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-anchor text-red-500 mt-1"></i>
+                        <div>
+                            <strong>Anchored at NRU:</strong> It sits precisely at the Natural Rate of Unemployment (Full-Employment).
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-ban text-red-500 mt-1"></i>
+                        <div>
+                            <strong>No Trade-off:</strong> Proves that in the long run, there is NO trade-off between inflation and unemployment.
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-bullseye text-red-500 mt-1"></i>
+                        <div>
+                            <strong>The Intersection:</strong> Where SRPC and LRPC cross = The Expected Rate of Inflation.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="w-full lg:w-1/2 flex justify-center relative">
+                <div class="glass-panel p-4 rounded-2xl w-full max-w-md aspect-square flex items-center justify-center">
+                    <svg viewBox="0 0 400 400" class="w-full h-full">
+                        <line x1="50" y1="50" x2="50" y2="350" class="axis-line" />
+                        <line x1="50" y1="350" x2="350" y2="350" class="axis-line" />
+                        <text x="15" y="200" class="axis-text" transform="rotate(-90 20 200)">Inflation Rate</text>
+                        <text x="200" y="380" class="axis-text" text-anchor="middle">Unemployment Rate</text>
+                        
+                        <!-- LRPC -->
+                        <line x1="200" y1="60" x2="200" y2="350" class="lrpc-line" />
+                        <text x="180" y="50" class="axis-text" style="fill:#ef4444;">LRPC</text>
+                        <text x="185" y="370" class="axis-text" style="fill:#ef4444; font-size:12px;">NRU</text>
 
-    function updatePresentation() {
-        slides.forEach((slide, index) => {
-            slide.classList.remove('active');
-            if (index === currentSlideIndex) {
-                slide.classList.add('active');
-                slide.scrollTop = 0; 
+                        <!-- SRPC -->
+                        <path d="M 80 80 Q 200 200 320 320" class="srpc-curve" />
+                        
+                        <!-- Intersection -->
+                        <circle cx="200" cy="200" r="6" fill="#facc15" />
+                        <line x1="50" y1="200" x2="200" y2="200" stroke="#facc15" stroke-dasharray="4,4" stroke-width="2" />
+                        <text x="60" y="190" class="axis-text" style="fill:#facc15; font-size:12px;">Expected Infl.</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Long Run Adjustment -->
+        <div class="slide-container flex-col lg:flex-row items-center justify-center gap-8 w-full max-w-6xl" id="slide-7">
+            <div class="w-full space-y-6">
+                <div class="inline-block px-3 py-1 rounded-md bg-pink-500/20 text-pink-400 font-bold text-xs uppercase tracking-wider">AP FRQ Favorite</div>
+                <h2 class="text-3xl lg:text-4xl font-bold text-white mb-2">The Long-Run Adjustment</h2>
+                <div class="h-1 w-20 bg-pink-500 rounded-full mb-6"></div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500 relative">
+                        <div class="absolute -top-3 -left-3 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">1</div>
+                        <h4 class="font-bold text-blue-400 mb-2">Short-Run Shock</h4>
+                        <p class="text-sm text-slate-300">Govt uses expansionary policy. AD increases. Economy moves UP and LEFT along the SRPC (lower unemployment, higher inflation).</p>
+                    </div>
+                    
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-yellow-500 relative">
+                        <div class="absolute -top-3 -left-3 bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
+                        <h4 class="font-bold text-yellow-400 mb-2">Expectations Adjust</h4>
+                        <p class="text-sm text-slate-300">Over time, workers and businesses adjust their expectations to the new, higher inflation rate. Input costs (wages) begin to rise.</p>
+                    </div>
+
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-pink-500 relative">
+                        <div class="absolute -top-3 -left-3 bg-pink-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
+                        <h4 class="font-bold text-pink-400 mb-2">Long-Run Shift</h4>
+                        <p class="text-sm text-slate-300">SRAS decreases, causing the entire SRPC to shift UP/RIGHT. Unemployment returns to NRU, but inflation is permanently higher.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Summary / Cheat Code -->
+        <div class="slide-container flex-col items-center justify-center text-center max-w-4xl w-full" id="slide-8">
+            <h2 class="text-4xl lg:text-6xl font-extrabold mb-8 text-white">
+                Exam Cheat Sheet
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full text-left">
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                    <h3 class="text-xl font-bold text-blue-400 mb-4 border-b border-slate-700 pb-2">The Rules</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><strong class="text-white">Δ in AD</strong> = Movement ALONG SRPC</li>
+                        <li><strong class="text-white">Δ in AS</strong> = Shift of SRPC (Opposite direction)</li>
+                        <li><strong class="text-white">Δ in Expected Infl.</strong> = Shift of SRPC</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-2xl border border-slate-700 shadow-xl">
+                    <h3 class="text-xl font-bold text-emerald-400 mb-4 border-b border-slate-700 pb-2">FRQ Pitfalls</h3>
+                    <ul class="space-y-3 text-slate-300">
+                        <li><i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> Label axes exactly: <strong>Inflation Rate</strong> & <strong>Unemployment Rate</strong>.</li>
+                        <li><i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> If given numbers (e.g., 5% NRU), <strong>plot them</strong> on the graph!</li>
+                        <li><i class="fa-solid fa-triangle-exclamation text-yellow-400"></i> Explain the <em>Chain of Reasoning</em> (Policy → AD → Phillips Curve).</li>
+                    </ul>
+                </div>
+            </div>
+            <button onclick="goToSlide(1)" class="mt-10 bg-slate-700 hover:bg-slate-600 text-white font-bold py-2 px-6 rounded-xl transition-all">
+                Restart Presentation <i class="fa-solid fa-rotate-right ml-2"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Footer/Controls -->
+    <footer class="flex justify-between items-center p-4 lg:p-6 w-full z-10 absolute bottom-0 bg-slate-950/80 backdrop-blur-md border-t border-slate-800">
+        <button onclick="prevSlide()" id="prevBtn" class="text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors px-4 py-2 rounded-lg hover:bg-slate-800">
+            <i class="fa-solid fa-chevron-left mr-2"></i> Previous
+        </button>
+        <div class="flex gap-2" id="dots-container">
+            <!-- Dots generated via JS -->
+        </div>
+        <button onclick="nextSlide()" id="nextBtn" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-lg font-medium transition-colors shadow-lg shadow-blue-500/20 disabled:opacity-30 disabled:cursor-not-allowed">
+            Next <i class="fa-solid fa-chevron-right ml-2"></i>
+        </button>
+    </footer>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+        
+        // Initialize dots
+        const dotsContainer = document.getElementById('dots-container');
+        for(let i=1; i<=totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = `w-2 h-2 rounded-full cursor-pointer transition-colors ${i === 1 ? 'bg-blue-500' : 'bg-slate-600 hover:bg-slate-500'}`;
+            dot.onclick = () => goToSlide(i);
+            dot.id = `dot-${i}`;
+            dotsContainer.appendChild(dot);
+        }
+
+        function updateUI() {
+            // Update slides
+            document.querySelectorAll('.slide-container').forEach(el => el.classList.remove('active'));
+            document.getElementById(`slide-${currentSlide}`).classList.add('active');
+            
+            // Update indicator
+            document.getElementById('slide-indicator').innerText = `Slide ${currentSlide} / ${totalSlides}`;
+            
+            // Update buttons
+            document.getElementById('prevBtn').disabled = currentSlide === 1;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides;
+            
+            // Update dots
+            for(let i=1; i<=totalSlides; i++) {
+                const dot = document.getElementById(`dot-${i}`);
+                if(i === currentSlide) {
+                    dot.className = 'w-6 h-2 rounded-full cursor-pointer transition-all duration-300 bg-blue-500';
+                } else {
+                    dot.className = 'w-2 h-2 rounded-full cursor-pointer transition-all duration-300 bg-slate-600 hover:bg-slate-500';
+                }
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                currentSlide++;
+                updateUI();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 1) {
+                currentSlide--;
+                updateUI();
+            }
+        }
+
+        function goToSlide(n) {
+            currentSlide = n;
+            updateUI();
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                prevSlide();
             }
         });
 
-        progressText.innerText = `Slide ${currentSlideIndex + 1} of ${totalSlides}`;
-        
-        prevBtn.disabled = currentSlideIndex === 0;
-        nextBtn.disabled = currentSlideIndex === totalSlides - 1;
-    }
-
-    function changeSlide(direction) {
-        currentSlideIndex += direction;
-        if (currentSlideIndex < 0) currentSlideIndex = 0;
-        if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
-        updatePresentation();
-    }
-</script>
-
+        // Initialize UI on load
+        updateUI();
+    </script>
 </body>
 </html>
