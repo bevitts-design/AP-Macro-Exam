@@ -1,3 +1,8 @@
+Here is your fully updated `index.html` file. I have swapped out the old array of 5 questions with the brand new set of 20 questions covering all the units. 
+
+All of your previous fixes (the double underscore for the video and the `.pdf` extensions for the study guides) are preserved here. You can just copy this entire block and replace the current contents of your file:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,9 +170,7 @@
                 <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-fit">
                     <h3 class="text-lg font-bold text-slate-800 mb-4">Topics</h3>
                     <ul class="space-y-2">
-                        <li><button class="w-full text-left px-4 py-3 bg-blue-50 text-blue-700 font-medium rounded-lg border border-blue-100">Unit 4: Financial Sector</button></li>
-                        <li><button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">Unit 6: Open Economy</button></li>
-                        <li><button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">Free Response Questions (FRQ)</button></li>
+                        <li><button class="w-full text-left px-4 py-3 bg-blue-50 text-blue-700 font-medium rounded-lg border border-blue-100">All Units</button></li>
                     </ul>
                 </div>
                 <div class="lg:col-span-2 space-y-6" id="quiz-container">
@@ -263,7 +266,7 @@
                 <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 h-fit">
                     <div class="rounded-xl overflow-hidden bg-black aspect-video mb-4">
                         <video id="main-video-player" controls class="w-full h-full">
-                            <source id="video-source" src="Mastering_AP_Macro_Unit_4.mp4" type="video/mp4">
+                            <source id="video-source" src="Mastering_AP_Macro__Unit_4.mp4" type="video/mp4">
                             Your browser does not support the video element.
                         </video>
                     </div>
@@ -275,7 +278,7 @@
                         <h3 class="font-bold text-slate-800">Video Playlist</h3>
                     </div>
                     <div class="overflow-y-auto playlist-scroll p-2">
-                        <button onclick="playVideo('Mastering_AP_Macro_Unit_4.mp4', '1. Mastering AP Macro Unit 4')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group mb-1">
+                        <button onclick="playVideo('Mastering_AP_Macro__Unit_4.mp4', '1. Mastering AP Macro Unit 4')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group mb-1">
                             <div class="w-24 aspect-video bg-slate-200 rounded flex-shrink-0 flex items-center justify-center relative overflow-hidden">
                                 <i class="ph ph-play text-xl text-slate-500 absolute z-10 group-hover:text-rose-600 transition-colors"></i>
                             </div>
@@ -408,59 +411,255 @@
         const practiceQuestions = [
             {
                 id: 1,
-                unit: "Unit 4",
+                unit: "Unit 1",
                 type: "multiple_choice",
-                text: "Which of the following will cause an increase in the quantity of money demanded?",
+                text: "Which of the following best describes the concept of comparative advantage?",
                 options: [
-                    { id: "A", text: "Decreasing nominal interest rates" },
-                    { id: "B", text: "Decreasing prices in the economy" },
-                    { id: "C", text: "Decreasing real national output" },
-                    { id: "D", text: "Increasing real interest rates" }
+                    { id: "A", text: "Producing a good using fewer resources than another producer." },
+                    { id: "B", text: "Producing a good at a lower opportunity cost than another producer." },
+                    { id: "C", text: "The ability to produce all goods more efficiently than another country." },
+                    { id: "D", text: "A situation where a country exports more than it imports." }
                 ],
-                correctAnswer: "A",
-                explanation: "The interest rate is the opportunity cost of holding money. When the nominal interest rate falls, the opportunity cost of holding money falls, and the quantity of money demanded increases."
+                correctAnswer: "B",
+                explanation: "Comparative advantage exists when a producer can create a good at a lower opportunity cost than another. Absolute advantage (Option A) refers to using fewer resources."
             },
             {
                 id: 2,
-                unit: "Unit 4",
+                unit: "Unit 1",
                 type: "multiple_choice",
-                text: "In a limited-reserves banking system, which of the following is true about a contractionary monetary policy?",
+                text: "A point operating inside (below) a country's Production Possibilities Curve (PPC) indicates which of the following?",
                 options: [
-                    { id: "A", text: "It increases the supply of reserves" },
-                    { id: "B", text: "It increases the money multiplier" },
-                    { id: "C", text: "It decreases the quantity of money demanded" },
-                    { id: "D", text: "It decreases the federal funds rate" }
+                    { id: "A", text: "The economy is experiencing economic growth." },
+                    { id: "B", text: "The economy is producing at full employment." },
+                    { id: "C", text: "The economy is using its resources inefficiently or experiencing unemployment." },
+                    { id: "D", text: "An unattainable level of production given current resources." }
                 ],
                 correctAnswer: "C",
-                explanation: "Contractionary monetary policy decreases the money supply, which raises nominal interest rates. When the nominal interest rate increases, the opportunity cost of holding money increases, so less money is demanded."
+                explanation: "Points on the PPC are efficient. Points inside the curve indicate inefficiency or underutilized resources (like unemployment). Points outside the curve are unattainable."
             },
             {
                 id: 3,
-                unit: "Unit 6",
+                unit: "Unit 2",
                 type: "multiple_choice",
-                text: "If Norway's central bank increases its administered rates, which of the following will most likely occur?",
+                text: "Which of the following would be included in the calculation of a nation's Gross Domestic Product (GDP) for this year?",
                 options: [
-                    { id: "A", text: "Norway's capital inflow will decrease" },
-                    { id: "B", text: "Norway's export revenue will decrease" },
-                    { id: "C", text: "Norway's private investment in plant and equipment will increase" },
-                    { id: "D", text: "Norway's domestic consumption will increase" }
+                    { id: "A", text: "The purchase of a 10-year-old used car." },
+                    { id: "B", text: "A government transfer payment, such as a social security check." },
+                    { id: "C", text: "The purchase of newly issued shares of Apple stock." },
+                    { id: "D", text: "The purchase of a new pizza oven by a local restaurant." }
                 ],
-                correctAnswer: "B",
-                explanation: "An increase in administered rates raises interest rates. Foreign investors purchase more Norwegian assets, raising demand for the krone, which appreciates. The appreciation increases Norwegian export prices, decreasing export revenue."
+                correctAnswer: "D",
+                explanation: "GDP measures final goods and services produced in a year. It excludes used goods (A), transfer payments (B), and financial transactions like stocks (C). The oven represents private investment (I)."
             },
             {
                 id: 4,
-                unit: "Unit 3",
-                type: "frq",
-                text: "Assume the economy of Country Zen is in long-run macroeconomic equilibrium. <br><br> (a) Draw a correctly labeled graph of the aggregate demand, short-run aggregate supply, and long-run aggregate supply curves. <br> (b) Show the short-run effect of an increase in consumer confidence.",
-                explanation: "<strong>Key Points to Consider:</strong><br><br>1. The AD curve shifts to the RIGHT due to increased consumer confidence.<br>2. This creates an inflationary gap where real output increases (Y2 > Y1) and the price level increases (PL2 > PL1)."
+                unit: "Unit 2",
+                type: "multiple_choice",
+                text: "If an economy is experiencing unanticipated inflation, who is most likely to benefit?",
+                options: [
+                    { id: "A", text: "A bank that issued a 30-year fixed-rate mortgage." },
+                    { id: "B", text: "A retired individual living on a fixed pension." },
+                    { id: "C", text: "A student who borrowed money at a fixed interest rate to pay for college." },
+                    { id: "D", text: "A worker whose wage is strictly tied to a long-term contract." }
+                ],
+                correctAnswer: "C",
+                explanation: "Unanticipated inflation redistributes wealth from lenders to borrowers. The student (borrower) repays the loan with money that has less purchasing power than when they initially borrowed it."
             },
             {
                 id: 5,
+                unit: "Unit 3",
+                type: "multiple_choice",
+                text: "If the Marginal Propensity to Consume (MPC) is 0.8, what is the value of the spending multiplier?",
+                options: [
+                    { id: "A", text: "2" },
+                    { id: "B", text: "4" },
+                    { id: "C", text: "5" },
+                    { id: "D", text: "8" }
+                ],
+                correctAnswer: "C",
+                explanation: "The spending multiplier formula is 1 / MPS (or 1 / (1 - MPC)). Since MPC is 0.8, MPS is 0.2. 1 divided by 0.2 equals 5."
+            },
+            {
+                id: 6,
+                unit: "Unit 3",
+                type: "multiple_choice",
+                text: "The Aggregate Demand (AD) curve slopes downward for all of the following reasons EXCEPT:",
+                options: [
+                    { id: "A", text: "The wealth effect" },
+                    { id: "B", text: "The interest rate effect" },
+                    { id: "C", text: "The substitution effect" },
+                    { id: "D", text: "The exchange rate effect" }
+                ],
+                correctAnswer: "C",
+                explanation: "The AD curve slopes downward due to the wealth effect, interest rate effect, and exchange rate effect. The substitution effect explains the downward slope of individual product demand curves, not aggregate demand."
+            },
+            {
+                id: 7,
+                unit: "Unit 4",
+                type: "multiple_choice",
+                text: "In an ample reserves framework, which policy action would the central bank take to close a recessionary gap?",
+                options: [
+                    { id: "A", text: "Buy government bonds on the open market." },
+                    { id: "B", text: "Decrease the Interest on Reserve Balances (IORB) rate." },
+                    { id: "C", text: "Increase the federal funds rate target." },
+                    { id: "D", text: "Increase the required reserve ratio." }
+                ],
+                correctAnswer: "B",
+                explanation: "In an ample reserves system, open market operations (buying bonds) are ineffective. To conduct expansionary policy, the central bank decreases administered rates like the IORB to lower market interest rates."
+            },
+            {
+                id: 8,
+                unit: "Unit 4",
+                type: "multiple_choice",
+                text: "Assume the required reserve ratio is 10%. If a customer deposits $1,000 of cash into their checking account, what is the maximum possible increase in the total money supply?",
+                options: [
+                    { id: "A", text: "$1,000" },
+                    { id: "B", text: "$9,000" },
+                    { id: "C", text: "$10,000" },
+                    { id: "D", text: "$100,000" }
+                ],
+                correctAnswer: "B",
+                explanation: "The money multiplier is 1 / 0.10 = 10. The bank must keep $100 in reserves and can loan out $900 (excess reserves). The maximum expansion of the money supply from the loan is $900 x 10 = $9,000. (The initial $1,000 deposit doesn't change the M1 money supply, it just moves from cash to demand deposits)."
+            },
+            {
+                id: 9,
+                unit: "Unit 5",
+                type: "multiple_choice",
+                text: "Which of the following would cause the Short-Run Phillips Curve (SRPC) to shift to the right?",
+                options: [
+                    { id: "A", text: "An increase in Aggregate Demand" },
+                    { id: "B", text: "A decrease in Aggregate Demand" },
+                    { id: "C", text: "A negative supply shock (e.g., a spike in oil prices)" },
+                    { id: "D", text: "A decrease in expected inflation" }
+                ],
+                correctAnswer: "C",
+                explanation: "Changes in AD cause a movement ALONG the SRPC. A negative supply shock decreases SRAS, causing stagflation (higher inflation and higher unemployment). This is represented by shifting the entire SRPC to the right."
+            },
+            {
+                id: 10,
+                unit: "Unit 5",
+                type: "multiple_choice",
+                text: "According to the crowding out effect, an increase in government deficit spending will cause which of the following in the loanable funds market?",
+                options: [
+                    { id: "A", text: "A decrease in the real interest rate and an increase in private investment." },
+                    { id: "B", text: "An increase in the real interest rate and a decrease in private investment." },
+                    { id: "C", text: "An increase in the real interest rate and an increase in private investment." },
+                    { id: "D", text: "A decrease in both the real interest rate and private investment." }
+                ],
+                correctAnswer: "B",
+                explanation: "When the government borrows to fund a deficit, it increases the demand for loanable funds. This drives up the real interest rate, which makes borrowing more expensive for businesses, thereby reducing (crowding out) private investment."
+            },
+            {
+                id: 11,
+                unit: "Unit 6",
+                type: "multiple_choice",
+                text: "If the United States experiences higher relative interest rates compared to Japan, what will happen to the US Dollar in the foreign exchange market?",
+                options: [
+                    { id: "A", text: "The US Dollar will depreciate because US exports will increase." },
+                    { id: "B", text: "The US Dollar will appreciate because foreign investors will demand more dollars to buy US financial assets." },
+                    { id: "C", text: "The US Dollar will depreciate because US citizens will invest more in Japan." },
+                    { id: "D", text: "The value of the US Dollar will remain unchanged." }
+                ],
+                correctAnswer: "B",
+                explanation: "Higher interest rates attract foreign capital. Japanese investors will demand more US Dollars to purchase high-yielding US bonds. This increase in demand causes the US Dollar to appreciate."
+            },
+            {
+                id: 12,
+                unit: "Unit 6",
+                type: "multiple_choice",
+                text: "Which of the following must be true regarding a nation's Balance of Payments?",
+                options: [
+                    { id: "A", text: "The Current Account must always be in surplus." },
+                    { id: "B", text: "The Capital and Financial Account (CFA) must always equal the trade deficit." },
+                    { id: "C", text: "The sum of the Current Account and the Capital and Financial Account must equal zero." },
+                    { id: "D", text: "A deficit in the Current Account causes a deficit in the CFA." }
+                ],
+                correctAnswer: "C",
+                explanation: "The Balance of Payments must balance. Any deficit in the Current Account (e.g., importing more than exporting) must be exactly offset by a surplus in the Capital and Financial Account (e.g., selling financial assets to foreigners), meaning CA + CFA = 0."
+            },
+            {
+                id: 13,
+                unit: "Unit 2",
+                type: "multiple_choice",
+                text: "Which of the following individuals is considered 'structurally unemployed'?",
+                options: [
+                    { id: "A", text: "A recent college graduate looking for their first job." },
+                    { id: "B", text: "A factory worker who is laid off due to a severe economic recession." },
+                    { id: "C", text: "A bank teller who is replaced by an automated ATM machine." },
+                    { id: "D", text: "A worker who quits their job to move to a new city." }
+                ],
+                correctAnswer: "C",
+                explanation: "Structural unemployment occurs when a worker's skills become obsolete or are replaced by technology. Option A and D are frictional unemployment, and Option B is cyclical unemployment."
+            },
+            {
+                id: 14,
+                unit: "Unit 3",
+                type: "multiple_choice",
+                text: "Assume an economy is facing a $100 billion recessionary gap. If the MPC is 0.8, what is the minimum change in taxes the government must implement to close this gap?",
+                options: [
+                    { id: "A", text: "Decrease taxes by $20 billion." },
+                    { id: "B", text: "Decrease taxes by $25 billion." },
+                    { id: "C", text: "Increase taxes by $25 billion." },
+                    { id: "D", text: "Decrease taxes by $100 billion." }
+                ],
+                correctAnswer: "B",
+                explanation: "The tax multiplier is -MPC / MPS. (-0.8 / 0.2) = -4. To achieve a $100 billion increase in GDP, the government needs a $25 billion tax cut (-25 x -4 = +100). Tax cuts have a smaller initial impact than government spending because a portion of the tax cut is saved."
+            },
+            {
+                id: 15,
+                unit: "Unit 4",
+                type: "multiple_choice",
+                text: "According to the Fisher Equation, if the nominal interest rate is 6% and the expected inflation rate is 2%, what is the real interest rate?",
+                options: [
+                    { id: "A", text: "3%" },
+                    { id: "B", text: "4%" },
+                    { id: "C", text: "8%" },
+                    { id: "D", text: "12%" }
+                ],
+                correctAnswer: "B",
+                explanation: "The Fisher Equation states that Real Interest Rate = Nominal Interest Rate - Inflation Rate. Therefore, 6% - 2% = 4%."
+            },
+            {
+                id: 16,
+                unit: "Unit 5",
+                type: "multiple_choice",
+                text: "The Long-Run Phillips Curve (LRPC) is a vertical line. What macroeconomic concept does this vertical line represent?",
+                options: [
+                    { id: "A", text: "The natural rate of inflation." },
+                    { id: "B", text: "The point where structural unemployment is zero." },
+                    { id: "C", text: "The natural rate of unemployment (NRU)." },
+                    { id: "D", text: "The peak of the business cycle." }
+                ],
+                correctAnswer: "C",
+                explanation: "The vertical LRPC shows that in the long run, there is no trade-off between inflation and unemployment. The economy will always naturally return to the Natural Rate of Unemployment (NRU), which is where the vertical line is anchored."
+            },
+            {
+                id: 17,
+                unit: "Unit 2",
+                type: "frq",
+                text: "Country Alpha reports a Nominal GDP of $500 billion for the current year. The GDP Deflator for this year is 125. <br><br>Calculate the Real GDP of Country Alpha and explain the difference between the CPI and the GDP Deflator.",
+                explanation: "<strong>Key Points to Consider:</strong><br><br>1. <strong>Calculation:</strong> Real GDP = (Nominal GDP / GDP Deflator) x 100. <br> ($500 / 125) x 100 = <strong>$400 billion.</strong><br><br>2. <strong>Explanation:</strong> The CPI measures price changes for a specific 'market basket' of goods bought by typical urban consumers, while the GDP Deflator measures the price changes of <em>all</em> finished goods and services produced within the country's borders."
+            },
+            {
+                id: 18,
+                unit: "Unit 3",
+                type: "frq",
+                text: "Assume an economy starts in a recessionary gap. <br><br>Explain the process by which the economy will self-correct in the long run without any government or central bank intervention. Be sure to reference nominal wages and the appropriate curve shift.",
+                explanation: "<strong>Key Points to Consider:</strong><br><br>1. In a recessionary gap, unemployment is high.<br>2. Because unemployment is high, workers have less bargaining power, and eventually, <strong>nominal wages and input prices will fall.</strong><br>3. Lower input prices decrease the cost of production for businesses, causing the <strong>Short-Run Aggregate Supply (SRAS) curve to shift to the RIGHT.</strong><br>4. This shift continues until the economy returns to full-employment output (LRAS) at a lower price level."
+            },
+            {
+                id: 19,
                 unit: "Unit 4",
                 type: "frq",
-                text: "Assume that the banking system in Zen has ample reserves and that the central bank’s goal is to maintain a stable price level. Based on the inflationary gap caused by increased consumer confidence, identify one specific monetary policy action the central bank would take.",
-                explanation: "<strong>Key Points to Consider:</strong><br><br>Because reserves are ample and there is an inflationary gap, the central bank should conduct contractionary policy using administered rates. <br><br><strong>Correct Action:</strong> The central bank should increase its administered interest rates (or increase Interest on Reserve Balances / IORB). <br><br><em>Note: Selling bonds or changing the reserve requirement would be incorrect here because the prompt specifies an AMPLE reserves system.</em>"
+                text: "Assume a central bank operates in a <strong>limited reserves</strong> framework and wishes to slow down high inflation. <br><br>Detail the complete 'chain of reasoning' from the central bank's initial open-market operation to its final impact on Aggregate Demand.",
+                explanation: "<strong>Key Points to Consider:</strong><br><br>1. <strong>Action:</strong> The central bank must <strong>sell bonds</strong> on the open market.<br>2. <strong>Money Market:</strong> This removes cash from banks, <em>decreasing the money supply</em> and shifting the MS curve left.<br>3. <strong>Interest Rates:</strong> The lower money supply causes <em>nominal interest rates to increase</em>.<br>4. <strong>Spending:</strong> Higher interest rates make borrowing more expensive, which <em>decreases interest-sensitive spending</em> (like Investment and Consumption).<br>5. <strong>Outcome:</strong> Lower C and I cause <em>Aggregate Demand (AD) to decrease</em> (shift left), cooling off inflation."
+            },
+            {
+                id: 20,
+                unit: "Unit 6",
+                type: "frq",
+                text: "Suppose the government of Country Beta implements expansionary fiscal policy by running a massive budget deficit. <br><br>Using the concept of crowding out, explain how this domestic fiscal policy will ultimately impact Country Beta's net exports and currency value in the foreign exchange market.",
+                explanation: "<strong>Key Points to Consider:</strong><br><br>1. <strong>Crowding Out:</strong> Deficit spending increases demand for loanable funds, driving up Country Beta's <strong>real interest rates.</strong><br>2. <strong>FOREX Impact:</strong> Higher interest rates attract foreign investors looking for better returns. This increases demand for Country Beta's currency, causing it to <strong>appreciate.</strong><br>3. <strong>Net Exports:</strong> Because the currency is now stronger/more expensive, Beta's exports become more expensive to foreigners, and imports become cheaper. Therefore, <strong>net exports will decrease.</strong>"
             }
         ];
 
