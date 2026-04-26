@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AP Macroeconomics Review Slides</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .presentation-container {
+        width: 800px;
+        max-width: 95vw;
+        height: 600px;
+        max-height: 90vh;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+    .slide {
+        display: none;
+        padding: 40px;
+        flex-grow: 1;
+        min-height: 0; /* This forces the scrollbar instead of pushing the buttons away */
+        overflow-y: auto;
+        animation: fadeIn 0.5s;
+    }
+    .slide.active {
+        display: block;
+    }
+    .slide h2 {
+        color: #2c3e50;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+    .slide p, .slide ul {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #34495e;
+    }
+    .slide li {
+        margin-bottom: 10px;
+    }
+    .graph-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .controls {
+        background: #ecf0f1;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0; /* This locks the control bar in place */
+        border-top: 1px solid #bdc3c7;
+    }
+    button {
+        background: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background: #2980b9;
+    }
+    button:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+    }
+    .progress {
+        font-weight: bold;
+        color: #7f8c8d;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .highlight {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    /* Scrollbar styling for slides */
+    .slide::-webkit-scrollbar { width: 8px; }
+    .slide::-webkit-scrollbar-thumb { background-color: #bdc3c7; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="presentation-container">
+    
+    <div class="slide active">
+        <h2>1. Welcome to Macroeconomics</h2>
+        <p>Macroeconomics is the study of the entire economy as a whole. While microeconomics focuses on individual consumers and firms, macro focuses on aggregate (total) metrics.</p>
+        <ul>
+            <li><strong>Core Issue:</strong> Scarcity (unlimited wants vs. limited resources).</li>
+            <li><strong>Three Major Macro Goals:</strong> Economic Growth, Low Unemployment, and Low Inflation.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>2. The Production Possibilities Curve (PPC)</h2>
+        <p>The PPC shows the maximum combinations of two goods an economy can produce given full employment of resources.</p>
+        <div class="graph-container">
+            <svg width="250" height="180" viewBox="0 0 200 150">
+                <line x1="20" y1="10" x2="20" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="20" y1="130" x2="180" y2="130" stroke="black" stroke-width="2"/>
+                <path d="M 20 30 Q 130 30 150 130" fill="none" stroke="#3498db" stroke-width="3"/>
+                <circle cx="100" cy="50" r="3" fill="red"/><text x="105" y="48" font-size="10">Efficient</text>
+                <circle cx="60" cy="90" r="3" fill="red"/><text x="65" y="88" font-size="10">Inefficient</text>
+                <circle cx="160" cy="40" r="3" fill="red"/><text x="165" y="38" font-size="10">Unattainable</text>
+                <text x="5" y="70" transform="rotate(-90 10,70)" font-size="12">Capital Goods</text>
+                <text x="60" y="145" font-size="12">Consumer Goods</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>Economic Growth:</strong> Shifts the entire curve outward.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>3. Demand and Supply</h2>
+        <p>The foundation of market economics. The interaction of buyers and sellers determines prices.</p>
+        <div class="graph-container">
+            <svg width="250" height="180" viewBox="0 0 200 150">
+                <line x1="20" y1="10" x2="20" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="20" y1="130" x2="180" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="40" y1="30" x2="140" y2="110" stroke="#e74c3c" stroke-width="3"/> 
+                <line x1="40" y1="110" x2="140" y2="30" stroke="#2ecc71" stroke-width="3"/> 
+                <circle cx="90" cy="70" r="4" fill="#34495e"/>
+                <line x1="20" y1="70" x2="90" y2="70" stroke="#7f8c8d" stroke-dasharray="4"/>
+                <line x1="90" y1="130" x2="90" y2="70" stroke="#7f8c8d" stroke-dasharray="4"/>
+                <text x="145" y="115" font-size="12" fill="#e74c3c">Demand</text>
+                <text x="145" y="35" font-size="12" fill="#2ecc71">Supply</text>
+                <text x="5" y="75" font-size="12">P*</text>
+                <text x="85" y="145" font-size="12">Q*</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>Equilibrium (P*, Q*):</strong> Where quantity demanded equals quantity supplied.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>4. Gross Domestic Product (GDP)</h2>
+        <p>GDP is the total market value of all final goods and services produced within a country in a given year.</p>
+        <ul>
+            <li><strong>Expenditure Approach:</strong> GDP = C + I + G + (X - M)</li>
+            <li><em>C = Consumer spending, I = Investment, G = Government spending, X-M = Net Exports.</em></li>
+            <li><strong>Does NOT include:</strong> Intermediate goods, non-market transactions, or used goods.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>5. Nominal vs. Real GDP</h2>
+        <p>It's crucial to adjust for inflation to see true economic growth.</p>
+        <ul>
+            <li><strong>Nominal GDP:</strong> Measured in current prices (unadjusted for inflation).</li>
+            <li><strong>Real GDP:</strong> Adjusted for inflation using base-year prices. This is the best measure of economic growth.</li>
+            <li><strong>GDP Deflator:</strong> (Nominal GDP / Real GDP) x 100.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>6. Unemployment</h2>
+        <p>The unemployment rate measures the percentage of the labor force that is jobless and actively seeking work.</p>
+        <ul>
+            <li><strong>Frictional:</strong> In between jobs / searching.</li>
+            <li><strong>Structural:</strong> Skills don't match available jobs (technological change).</li>
+            <li><strong>Cyclical:</strong> Due to a recession / downturn in the business cycle.</li>
+            <li><span class="highlight">Natural Rate of Unemployment (NRU):</span> Frictional + Structural (Cyclical is 0).</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>7. Inflation and the CPI</h2>
+        <p>Inflation is the general increase in price levels, decreasing purchasing power.</p>
+        <ul>
+            <li><strong>Consumer Price Index (CPI):</strong> Measures the cost of a "market basket" of goods bought by a typical consumer over time.</li>
+            <li><strong>Formula:</strong> (Price of basket in current year / Price in base year) x 100.</li>
+            <li><strong>Causes:</strong> Demand-pull (too much money chasing too few goods) and Cost-push (negative supply shock).</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>8. The Business Cycle</h2>
+        <p>The recurring ups and downs of Real GDP over time.</p>
+        <ul>
+            <li><strong>Expansion:</strong> Real GDP grows, unemployment falls, inflation may rise.</li>
+            <li><strong>Peak:</strong> The highest point of an expansion.</li>
+            <li><strong>Contraction (Recession):</strong> Real GDP falls for at least 6 months, unemployment rises.</li>
+            <li><strong>Trough:</strong> The lowest point before recovery begins.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>9. Aggregate Demand (AD)</h2>
+        <p>AD is the total demand for all final goods and services in the economy at various price levels.</p>
+        <ul>
+            <li><strong>Downward sloping due to:</strong> Wealth Effect, Interest Rate Effect, and Foreign Trade Effect.</li>
+            <li><strong>Shifters:</strong> Changes in C, I, G, or Net Exports (X-M).</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>10. Aggregate Supply (SRAS & LRAS)</h2>
+        <p>Total production in the economy.</p>
+        <ul>
+            <li><strong>Short-Run Aggregate Supply (SRAS):</strong> Upward sloping. Input prices (like wages) are sticky. Shifts via changes in resource prices, actions of gov (taxes/regulations), or productivity.</li>
+            <li><strong>Long-Run Aggregate Supply (LRAS):</strong> Vertical line at full employment. Represents the economy's potential output.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>11. Macroeconomic Equilibrium (AD/AS Model)</h2>
+        <p>Where Aggregate Demand intersects Short-Run Aggregate Supply.</p>
+        <div class="graph-container">
+            <svg width="250" height="180" viewBox="0 0 200 150">
+                <line x1="20" y1="10" x2="20" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="20" y1="130" x2="180" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="40" y1="30" x2="140" y2="110" stroke="#e74c3c" stroke-width="3"/> <line x1="40" y1="110" x2="140" y2="30" stroke="#2ecc71" stroke-width="3"/> <line x1="90" y1="20" x2="90" y2="130" stroke="#f39c12" stroke-width="3" stroke-dasharray="5"/> <text x="145" y="115" font-size="12" fill="#e74c3c">AD</text>
+                <text x="145" y="35" font-size="12" fill="#2ecc71">SRAS</text>
+                <text x="75" y="15" font-size="12" fill="#f39c12">LRAS (Yf)</text>
+                <text x="2" y="70" font-size="12">PL</text>
+                <text x="70" y="145" font-size="12">Real GDP (Y)</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>Recessionary Gap:</strong> Equilibrium is to the left of LRAS (high unemployment).</li>
+            <li><strong>Inflationary Gap:</strong> Equilibrium is to the right of LRAS (high inflation).</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>12. Fiscal Policy</h2>
+        <p>Actions taken by the Government (Congress/President) to stabilize the economy.</p>
+        <ul>
+            <li><strong>Expansionary (Fix a recession):</strong> Increase Government Spending or Decrease Taxes.</li>
+            <li><strong>Contractionary (Fix inflation):</strong> Decrease Government Spending or Increase Taxes.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>13. The Spending Multiplier</h2>
+        <p>Initial changes in spending lead to further changes in spending and income.</p>
+        <ul>
+            <li><strong>Marginal Propensity to Consume (MPC):</strong> How much of extra income people spend.</li>
+            <li><strong>Marginal Propensity to Save (MPS):</strong> How much they save. (MPC + MPS = 1)</li>
+            <li><strong>Spending Multiplier Formula:</strong> 1 / MPS or 1 / (1 - MPC).</li>
+            <li><strong>Tax Multiplier:</strong> -MPC / MPS. (Always 1 less than spending multiplier).</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>14. Money and Banking</h2>
+        <p>Money is anything commonly accepted as payment. The banking system creates money through loans.</p>
+        <ul>
+            <li><strong>Functions of Money:</strong> Medium of exchange, Unit of account, Store of value.</li>
+            <li><strong>M1:</strong> Currency in circulation and checkable deposits (most liquid).</li>
+            <li><strong>Reserve Requirement:</strong> The % of deposits banks must keep in the vault.</li>
+            <li><strong>Money Multiplier:</strong> 1 / Reserve Requirement.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>15. The Money Market</h2>
+        <p>Shows the demand and supply for money.</p>
+        <ul>
+            <li><strong>Money Demand:</strong> Downward sloping (Inverse relation between nominal interest rate and quantity of money demanded).</li>
+            <li><strong>Money Supply:</strong> Vertical line determined by the central bank (Federal Reserve).</li>
+            <li>Interest rates are determined by where these two curves intersect.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>16. Monetary Policy</h2>
+        <p>Actions taken by the Central Bank (Federal Reserve) to alter the Money Supply and influence interest rates.</p>
+        <ul>
+            <li><strong>Tools:</strong> Open Market Operations (buying/selling bonds), Discount Rate, Reserve Requirement.</li>
+            <li><strong>Expansionary ("Easy Money"):</strong> Buy Bonds, Lower Discount Rate, Lower Reserve Req. (Increases AD).</li>
+            <li><strong>Contractionary ("Tight Money"):</strong> Sell Bonds, Raise Discount Rate, Raise Reserve Req. (Decreases AD).</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>17. Loanable Funds Market</h2>
+        <p>The market where savers supply funds to borrowers.</p>
+        <ul>
+            <li><strong>Supply of LF:</strong> Driven by national savings (public and private).</li>
+            <li><strong>Demand for LF:</strong> Driven by private investment and government borrowing.</li>
+            <li><strong>Crowding Out:</strong> Government deficit spending increases demand for LF, raising real interest rates and reducing private investment.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>18. The Phillips Curve</h2>
+        <p>Shows the relationship between inflation and unemployment.</p>
+        <ul>
+            <li><strong>Short-Run Phillips Curve (SRPC):</strong> Downward sloping. Trade-off between inflation and unemployment. (Shifts in AD cause movements ALONG the SRPC; shifts in SRAS shift the ENTIRE SRPC).</li>
+            <li><strong>Long-Run Phillips Curve (LRPC):</strong> Vertical line at the Natural Rate of Unemployment. No trade-off in the long run.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>19. Foreign Exchange (FOREX) Market</h2>
+        <p>Where currencies are traded. Exchange rates determine the price of imports and exports.</p>
+        <ul>
+            <li><strong>Appreciation:</strong> Currency gains value. (Makes exports expensive, imports cheap).</li>
+            <li><strong>Depreciation:</strong> Currency loses value. (Makes exports cheap, imports expensive).</li>
+            <li><strong>Shifters:</strong> Changes in Tastes, Relative Incomes, Relative Price Levels, and Relative Interest Rates.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>20. The Ample Reserves Framework</h2>
+        <p>A modern framework where the banking system has abundant reserves. The Fed uses interest rates directly rather than shifting money supply.</p>
+        <div class="graph-container">
+            <svg width="250" height="180" viewBox="0 0 200 150">
+                <line x1="20" y1="10" x2="20" y2="130" stroke="black" stroke-width="2"/>
+                <line x1="20" y1="130" x2="180" y2="130" stroke="black" stroke-width="2"/>
+                <path d="M 30 20 L 70 80 L 170 80" fill="none" stroke="#e74c3c" stroke-width="3"/> 
+                <line x1="120" y1="20" x2="120" y2="130" stroke="#2ecc71" stroke-width="3"/> 
+                <text x="175" y="85" font-size="12" fill="#e74c3c">Rd</text>
+                <text x="110" y="15" font-size="12" fill="#2ecc71">Rs</text>
+                <text x="-15" y="80" transform="rotate(-90 5,80)" font-size="11">Policy Rate</text>
+                <text x="80" y="145" font-size="11">Reserves</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>Interest on Reserve Balances (IORB):</strong> The primary tool. The Fed adjusts this rate to steer the Federal Funds Rate.</li>
+            <li><strong>Monetary Policy Action:</strong> To cool inflation, the Fed <em>raises</em> the IORB. To fix a recession, the Fed <em>lowers</em> the IORB.</li>
+        </ul>
+    </div>
+
+    <div class="slide">
+        <h2>21. AP Macro Exam Tips!</h2>
+        <p>You're ready for the test! Keep these final tips in mind:</p>
+        <ul>
+            <li>Always LABEL your graphs completely (axes, curves, equilibrium points).</li>
+            <li>Draw directional arrows to show shifts.</li>
+            <li>Know the difference between Real and Nominal variables.</li>
+            <li>Read the prompt carefully: are they asking about Fiscal or Monetary policy?</li>
+            <li>Take a deep breath. You've got this!</li>
+        </ul>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+        <div class="progress" id="progressText">Slide 1 of 21</div>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+</div>
+
+<script>
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const progressText = document.getElementById('progressText');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePresentation() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlideIndex) {
+                slide.classList.add('active');
+                slide.scrollTop = 0; 
+            }
+        });
+
+        progressText.innerText = `Slide ${currentSlideIndex + 1} of ${totalSlides}`;
+        
+        prevBtn.disabled = currentSlideIndex === 0;
+        nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+        currentSlideIndex += direction;
+        if (currentSlideIndex < 0) currentSlideIndex = 0;
+        if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+        updatePresentation();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AP Macroeconomics Study Portal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons for modern UI icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* Smooth transitions for view switching */
+        .view-section {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .view-section.active {
+            display: block;
+            opacity: 1;
+        }
+        /* Custom radio button styling */
+        .option-label:hover {
+            background-color: #f3f4f6;
+        }
+        input[type="radio"]:checked + .option-text {
+            font-weight: 600;
+            color: #2563eb;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Navigation Bar -->
+    <nav class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showView('home')">
+                <i class="ph ph-chart-line-up text-2xl"></i>
+                <h1 class="text-xl font-bold tracking-wide">AP Macro Mastery</h1>
+            </div>
+            <div class="hidden sm:flex gap-6 font-medium">
+                <button onclick="showView('home')" class="hover:text-blue-200 transition">Home</button>
+                <button onclick="showView('slides')" class="hover:text-blue-200 transition">Slide Decks</button>
+                <button onclick="showView('practice')" class="hover:text-blue-200 transition">Practice Problems</button>
+            </div>
+            <button class="sm:hidden text-2xl">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-8">
+
+        <!-- HOME VIEW -->
+        <section id="home" class="view-section active">
+            <div class="text-center py-12 px-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Ace Your AP Macro Exam</h2>
+                <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">Your all-in-one portal for reviewing key concepts, understanding aggregate models, and mastering the practice problems you need for a 5.</p>
+                
+                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    <!-- Slides Card -->
+                    <button onclick="showView('slides')" class="group flex flex-col items-center p-8 bg-blue-50 border-2 border-blue-100 rounded-2xl hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-xl">
+                        <div class="w-16 h-16 bg-blue-100 text-blue-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-presentation-chart text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Slide Decks</h3>
+                        <p class="text-slate-600 group-hover:text-blue-100 transition-colors">Review class notes, key graphs, and core macroeconomic models.</p>
+                    </button>
+
+                    <!-- Practice Card -->
+                    <button onclick="showView('practice')" class="group flex flex-col items-center p-8 bg-emerald-50 border-2 border-emerald-100 rounded-2xl hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 shadow-sm hover:shadow-xl">
+                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-pencil-simple-text text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Practice Problems</h3>
+                        <p class="text-slate-600 group-hover:text-emerald-100 transition-colors">Test your knowledge with multiple-choice questions and FRQs.</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDES VIEW -->
+        <section id="slides" class="view-section">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showView('home')" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="ph ph-arrow-left"></i> Back
+                </button>
+                <h2 class="text-3xl font-bold text-slate-900">Study Slides</h2>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 md:p-6">
+                <!-- Slide Topic Selector -->
+                <div class="mb-4">
+                    <label for="slide-selector" class="block text-sm font-medium text-slate-700 mb-1">Select Topic:</label>
+                    <select id="slide-selector" onchange="changeSlideDeck()" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 p-2.5">
+                        <option value="slide.html">Complete Review Deck (slide.html)</option>
+                        <option value="">Unit 4: Monetary Policy (Coming Soon)</option>
+                        <option value="">Unit 5: Phillips Curve (Coming Soon)</option>
+                    </select>
+                </div>
+
+                <!-- Slide Iframe -->
+                <div class="relative w-full rounded-xl overflow-hidden bg-slate-100 border border-slate-300 flex flex-col items-center justify-center" style="aspect-ratio: 16/9;">
+                    <iframe id="slide-iframe" src="slide.html" class="w-full h-full border-0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRACTICE VIEW -->
+        <section id="practice" class="view-section">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showView('home')" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
+                    <i class="ph ph-arrow-left"></i> Back
+                </button>
+                <h2 class="text-3xl font-bold text-slate-900">Practice Problems</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Sidebar: Topic Selection -->
+                <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-fit">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4">Topics</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <button class="w-full text-left px-4 py-3 bg-blue-50 text-blue-700 font-medium rounded-lg border border-blue-100">
+                                Unit 4: Financial Sector
+                            </button>
+                        </li>
+                        <li>
+                            <button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">
+                                Unit 6: Open Economy
+                            </button>
+                        </li>
+                        <li>
+                            <button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">
+                                Free Response Questions (FRQ)
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quiz Area -->
+                <div class="lg:col-span-2 space-y-6" id="quiz-container">
+                    <!-- JavaScript will populate questions here -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-slate-300 py-6 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+            <p>AP Macroeconomics Study Portal &copy; 2026. Built for GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <!-- Custom Message Modal (Replaces standard alerts) -->
+    <div id="feedback-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4 opacity-0 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modal-title" class="text-xl font-bold">Feedback</h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600">
+                    <i class="ph ph-x text-2xl"></i>
+                </button>
+            </div>
+            <p id="modal-message" class="text-slate-600 mb-6"></p>
+            <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-6 hidden" id="modal-explanation">
+                <span class="font-bold text-slate-800 text-sm uppercase tracking-wider">Explanation:</span>
+                <p class="text-slate-700 mt-1 text-sm" id="explanation-text"></p>
+            </div>
+            <button onclick="closeModal()" class="w-full py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors">
+                Continue
+            </button>
+        </div>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+        // --- Navigation Logic ---
+        function showView(viewId) {
+            // Hide all views
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+                setTimeout(() => {
+                    if (!section.classList.contains('active')) {
+                        section.style.display = 'none';
+                    }
+                }, 300); // match transition duration
+            });
+
+            // Show target view
+            const target = document.getElementById(viewId);
+            target.style.display = 'block';
+            // Slight delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                target.classList.add('active');
+            }, 10);
+            
+            window.scrollTo(0, 0);
+        }
+
+        // --- Slide Deck Logic ---
+        function changeSlideDeck() {
+            const selector = document.getElementById('slide-selector');
+            const iframe = document.getElementById('slide-iframe');
+            if (selector.value) {
+                iframe.src = selector.value;
+            } else {
+                iframe.srcdoc = `<html><body style="display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; color:#64748b; background-color:#f1f5f9;"><h2>This slide deck is coming soon!</h2></body></html>`;
+            }
+        }
+
+        // =====================================================================
+        // QUESTION BANK - EASY TO ADD NEW QUESTIONS HERE
+        // =====================================================================
+        // To add a new question, copy one of the blocks below and paste it inside the list.
+        // Make sure to match the format exactly.
+        // Type can be "multiple_choice" or "frq".
+        // =====================================================================
+        const practiceQuestions = [
+            {
+                id: 1,
+                unit: "Unit 4",
+                type: "multiple_choice",
+                text: "Which of the following will cause an increase in the quantity of money demanded?",
+                options: [
+                    { id: "A", text: "Decreasing nominal interest rates" },
+                    { id: "B", text: "Decreasing prices in the economy" },
+                    { id: "C", text: "Decreasing real national output" },
+                    { id: "D", text: "Increasing real interest rates" }
+                ],
+                correctAnswer: "A",
+                explanation: "The interest rate is the opportunity cost of holding money. When the nominal interest rate falls, the opportunity cost of holding money falls, and the quantity of money demanded increases."
+            },
+            {
+                id: 2,
+                unit: "Unit 4",
+                type: "multiple_choice",
+                text: "In a limited-reserves banking system, which of the following is true about a contractionary monetary policy?",
+                options: [
+                    { id: "A", text: "It increases the supply of reserves" },
+                    { id: "B", text: "It increases the money multiplier" },
+                    { id: "C", text: "It decreases the quantity of money demanded" },
+                    { id: "D", text: "It decreases the federal funds rate" }
+                ],
+                correctAnswer: "C",
+                explanation: "Contractionary monetary policy decreases the money supply, which raises nominal interest rates. When the nominal interest rate increases, the opportunity cost of holding money increases, so less money is demanded."
+            },
+            {
+                id: 3,
+                unit: "Unit 6",
+                type: "multiple_choice",
+                text: "If Norway's central bank increases its administered rates, which of the following will most likely occur?",
+                options: [
+                    { id: "A", text: "Norway's capital inflow will decrease" },
+                    { id: "B", text: "Norway's export revenue will decrease" },
+                    { id: "C", text: "Norway's private investment in plant and equipment will increase" },
+                    { id: "D", text: "Norway's domestic consumption will increase" }
+                ],
+                correctAnswer: "B",
+                explanation: "An increase in administered rates raises interest rates. Foreign investors purchase more Norwegian assets, raising demand for the krone, which appreciates. The appreciation increases Norwegian export prices, decreasing export revenue."
+            },
+            // --- FRQ EXAMPLES BELOW ---
+            {
+                id: 4,
+                unit: "Unit 3",
+                type: "frq",
+                text: "Assume the economy of Country Zen is in long-run macroeconomic equilibrium. <br><br> (a) Draw a correctly labeled graph of the aggregate demand, short-run aggregate supply, and long-run aggregate supply curves. <br> (b) Show the short-run effect of an increase in consumer confidence.",
+                explanation: "<strong>Key Points to Consider:</strong><br><br>1. The AD curve shifts to the RIGHT due to increased consumer confidence.<br>2. This creates an inflationary gap where real output increases (Y2 > Y1) and the price level increases (PL2 > PL1)."
+            },
+            {
+                id: 5,
+                unit: "Unit 4",
+                type: "frq",
+                text: "Assume that the banking system in Zen has ample reserves and that the central bank’s goal is to maintain a stable price level. Based on the inflationary gap caused by increased consumer confidence, identify one specific monetary policy action the central bank would take.",
+                explanation: "<strong>Key Points to Consider:</strong><br><br>Because reserves are ample and there is an inflationary gap, the central bank should conduct contractionary policy using administered rates. <br><br><strong>Correct Action:</strong> The central bank should increase its administered interest rates (or increase Interest on Reserve Balances / IORB). <br><br><em>Note: Selling bonds or changing the reserve requirement would be incorrect here because the prompt specifies an AMPLE reserves system.</em>"
+            }
+        ];
+
+        // --- Render Quiz ---
+        const quizContainer = document.getElementById('quiz-container');
+
+        function renderQuestions() {
+            quizContainer.innerHTML = ''; // Clear container
+
+            practiceQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'bg-white rounded-2xl shadow-sm border border-slate-200 p-6 mb-6';
+                
+                if (q.type === 'multiple_choice') {
+                    let optionsHtml = '';
+                    q.options.forEach(opt => {
+                        optionsHtml += `
+                            <label class="option-label flex items-start gap-3 p-3 rounded-xl border border-slate-200 cursor-pointer transition-colors mt-3">
+                                <input type="radio" name="question_${q.id}" value="${opt.id}" class="mt-1 w-4 h-4 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <span class="option-text text-slate-700 leading-tight">
+                                    <span class="font-bold mr-1">${opt.id}.</span> ${opt.text}
+                                </span>
+                            </label>
+                        `;
+                    });
+
+                    questionDiv.innerHTML = `
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide">${q.unit} - Multiple Choice</span>
+                            <span class="text-slate-400 font-medium text-sm">Question ${index + 1} of ${practiceQuestions.length}</span>
+                        </div>
+                        <h4 class="text-lg font-medium text-slate-900 mb-2">${q.text}</h4>
+                        <div class="space-y-2 mb-6">
+                            ${optionsHtml}
+                        </div>
+                        <button onclick="checkAnswer(${q.id})" class="px-5 py-2.5 bg-slate-800 text-white font-medium rounded-lg hover:bg-slate-700 transition-colors shadow-sm">
+                            Check Answer
+                        </button>
+                    `;
+                } else if (q.type === 'frq') {
+                    questionDiv.innerHTML = `
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded uppercase tracking-wide">${q.unit} - Free Response</span>
+                            <span class="text-slate-400 font-medium text-sm">Question ${index + 1} of ${practiceQuestions.length}</span>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200 mb-4">
+                            <h4 class="text-lg font-medium text-slate-900 leading-relaxed">${q.text}</h4>
+                        </div>
+                        <p class="text-slate-500 text-sm mb-6 italic"><i class="ph ph-lightbulb"></i> Read the prompt, think about your answer, and sketch it out if needed before checking the key.</p>
+                        <button onclick="showFRQKey(${q.id})" class="px-5 py-2.5 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-colors shadow-sm">
+                            Check Key Points
+                        </button>
+                    `;
+                }
+                
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // --- Answer Checking & Modal Logic ---
+        const modal = document.getElementById('feedback-modal');
+        const modalTitle = document.getElementById('modal-title');
+        const modalMessage = document.getElementById('modal-message');
+        const modalContent = document.getElementById('modal-content');
+        const modalExplanation = document.getElementById('modal-explanation');
+        const explanationText = document.getElementById('explanation-text');
+
+        function checkAnswer(questionId) {
+            const selectedOption = document.querySelector(`input[name="question_${questionId}"]:checked`);
+            const question = practiceQuestions.find(q => q.id === questionId);
+
+            if (!selectedOption) {
+                showModal("Almost there!", "Please select an answer before checking.", null, false);
+                return;
+            }
+
+            const isCorrect = selectedOption.value === question.correctAnswer;
+            
+            if (isCorrect) {
+                showModal("Correct! 🎉", "Great job! You've mastered this concept.", question.explanation, true);
+            } else {
+                showModal("Not quite right", `You selected ${selectedOption.value}, but the correct answer is ${question.correctAnswer}.`, question.explanation, false);
+            }
+        }
+
+        function showFRQKey(questionId) {
+            const question = practiceQuestions.find(q => q.id === questionId);
+            showModal("FRQ Key Points", "Compare your thoughts to these key ideas:", question.explanation, true);
+            // Override the title color to be neutral/informative instead of green
+            modalTitle.className = "text-xl font-bold text-slate-800";
+        }
+
+        function showModal(title, message, explanation, isSuccess) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            
+            if (isSuccess) {
+                modalTitle.className = "text-xl font-bold text-emerald-600";
+            } else {
+                modalTitle.className = "text-xl font-bold text-rose-600";
+            }
+
+            if (explanation) {
+                modalExplanation.classList.remove('hidden');
+                explanationText.innerHTML = explanation; // Changed to innerHTML to support formatting
+            } else {
+                modalExplanation.classList.add('hidden');
+            }
+
+            modal.classList.remove('hidden');
+            // Trigger reflow to apply opacity transition
+            void modal.offsetWidth;
+            modal.classList.remove('opacity-0');
+            modalContent.classList.remove('scale-95');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', () => {
+            renderQuestions();
+            // Start on home view
+            document.getElementById('home').style.display = 'block';
+            setTimeout(() => { document.getElementById('home').classList.add('active'); }, 50);
+        });
+
+    </script>
+</body>
+</html>
