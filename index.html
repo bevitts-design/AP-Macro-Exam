@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AP Macroeconomics Study Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Phosphor Icons for modern UI icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
         /* Smooth transitions for view switching */
@@ -26,21 +25,52 @@
             font-weight: 600;
             color: #2563eb;
         }
+        /* Custom scrollbar for media playlists */
+        .playlist-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .playlist-scroll::-webkit-scrollbar-track {
+            background: #f1f5f9; 
+            border-radius: 8px;
+        }
+        .playlist-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 8px;
+        }
+        .playlist-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8; 
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
 
-    <!-- Navigation Bar -->
     <nav class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center gap-2 cursor-pointer" onclick="showView('home')">
                 <i class="ph ph-chart-line-up text-2xl"></i>
                 <h1 class="text-xl font-bold tracking-wide">AP Macro Mastery</h1>
             </div>
-            <div class="hidden sm:flex gap-6 font-medium">
+            <div class="hidden sm:flex items-center gap-6 font-medium">
                 <button onclick="showView('home')" class="hover:text-blue-200 transition">Home</button>
                 <button onclick="showView('slides')" class="hover:text-blue-200 transition">Slide Decks</button>
                 <button onclick="showView('practice')" class="hover:text-blue-200 transition">Practice Problems</button>
+                
+                <div class="relative group py-2">
+                    <button class="flex items-center gap-1 hover:text-blue-200 transition">
+                        Resources <i class="ph ph-caret-down text-sm"></i>
+                    </button>
+                    <div class="absolute top-full right-0 mt-0 w-48 bg-white text-slate-800 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 border border-slate-100 overflow-hidden z-50">
+                        <button onclick="showView('study-guides')" class="w-full text-left px-4 py-3 hover:bg-slate-50 border-b border-slate-100 flex items-center gap-2 text-sm">
+                            <i class="ph ph-file-pdf text-purple-600 text-lg"></i> Study Guides
+                        </button>
+                        <button onclick="showView('audio')" class="w-full text-left px-4 py-3 hover:bg-slate-50 border-b border-slate-100 flex items-center gap-2 text-sm">
+                            <i class="ph ph-headphones text-amber-600 text-lg"></i> Audio Lectures
+                        </button>
+                        <button onclick="showView('video')" class="w-full text-left px-4 py-3 hover:bg-slate-50 flex items-center gap-2 text-sm">
+                            <i class="ph ph-video-camera text-rose-600 text-lg"></i> Video Library
+                        </button>
+                    </div>
+                </div>
             </div>
             <button class="sm:hidden text-2xl">
                 <i class="ph ph-list"></i>
@@ -48,38 +78,57 @@
         </div>
     </nav>
 
-    <!-- Main Content Area -->
     <main class="flex-grow max-w-6xl mx-auto w-full px-4 py-8">
 
-        <!-- HOME VIEW -->
         <section id="home" class="view-section active">
-            <div class="text-center py-12 px-4 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div class="text-center py-12 px-4 bg-white rounded-2xl shadow-sm border border-slate-100 mb-8">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-4">Ace Your AP Macro Exam</h2>
                 <p class="text-lg text-slate-600 mb-10 max-w-2xl mx-auto">Your all-in-one portal for reviewing key concepts, understanding aggregate models, and mastering the practice problems you need for a 5.</p>
                 
-                <div class="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-                    <!-- Slides Card -->
-                    <button onclick="showView('slides')" class="group flex flex-col items-center p-8 bg-blue-50 border-2 border-blue-100 rounded-2xl hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-xl">
-                        <div class="w-16 h-16 bg-blue-100 text-blue-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
-                            <i class="ph ph-presentation-chart text-3xl"></i>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    <button onclick="showView('slides')" class="group flex flex-col items-center p-6 bg-blue-50 border-2 border-blue-100 rounded-2xl hover:bg-blue-600 hover:border-blue-600 transition-all duration-300 shadow-sm hover:shadow-xl">
+                        <div class="w-14 h-14 bg-blue-100 text-blue-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-presentation-chart text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Slide Decks</h3>
-                        <p class="text-slate-600 group-hover:text-blue-100 transition-colors">Review class notes, key graphs, and core macroeconomic models.</p>
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Slide Decks</h3>
+                        <p class="text-sm text-slate-600 group-hover:text-blue-100 transition-colors">Review class notes and core macroeconomic models.</p>
                     </button>
 
-                    <!-- Practice Card -->
-                    <button onclick="showView('practice')" class="group flex flex-col items-center p-8 bg-emerald-50 border-2 border-emerald-100 rounded-2xl hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 shadow-sm hover:shadow-xl">
-                        <div class="w-16 h-16 bg-emerald-100 text-emerald-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
-                            <i class="ph ph-pencil-simple-text text-3xl"></i>
+                    <button onclick="showView('practice')" class="group flex flex-col items-center p-6 bg-emerald-50 border-2 border-emerald-100 rounded-2xl hover:bg-emerald-600 hover:border-emerald-600 transition-all duration-300 shadow-sm hover:shadow-xl">
+                        <div class="w-14 h-14 bg-emerald-100 text-emerald-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-pencil-simple-text text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Practice Problems</h3>
-                        <p class="text-slate-600 group-hover:text-emerald-100 transition-colors">Test your knowledge with multiple-choice questions and FRQs.</p>
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Practice Problems</h3>
+                        <p class="text-sm text-slate-600 group-hover:text-emerald-100 transition-colors">Test your knowledge with multiple-choice and FRQs.</p>
+                    </button>
+
+                    <button onclick="showView('study-guides')" class="group flex flex-col items-center p-6 bg-purple-50 border-2 border-purple-100 rounded-2xl hover:bg-purple-600 hover:border-purple-600 transition-all duration-300 shadow-sm hover:shadow-xl">
+                        <div class="w-14 h-14 bg-purple-100 text-purple-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-file-pdf text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Study Guides</h3>
+                        <p class="text-sm text-slate-600 group-hover:text-purple-100 transition-colors">Comprehensive PDF outlines and cheat sheets.</p>
+                    </button>
+
+                    <button onclick="showView('audio')" class="group flex flex-col items-center p-6 bg-amber-50 border-2 border-amber-100 rounded-2xl hover:bg-amber-600 hover:border-amber-600 transition-all duration-300 shadow-sm hover:shadow-xl md:col-start-1 lg:col-start-auto">
+                        <div class="w-14 h-14 bg-amber-100 text-amber-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-headphones text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Audio Lectures</h3>
+                        <p class="text-sm text-slate-600 group-hover:text-amber-100 transition-colors">Listen and learn on the go with concept reviews.</p>
+                    </button>
+
+                    <button onclick="showView('video')" class="group flex flex-col items-center p-6 bg-rose-50 border-2 border-rose-100 rounded-2xl hover:bg-rose-600 hover:border-rose-600 transition-all duration-300 shadow-sm hover:shadow-xl md:col-start-2 lg:col-start-auto">
+                        <div class="w-14 h-14 bg-rose-100 text-rose-600 group-hover:bg-white rounded-full flex items-center justify-center mb-4 transition-colors">
+                            <i class="ph ph-video-camera text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 group-hover:text-white mb-2 transition-colors">Video Library</h3>
+                        <p class="text-sm text-slate-600 group-hover:text-rose-100 transition-colors">Watch detailed breakdowns of complex graphs.</p>
                     </button>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDES VIEW -->
         <section id="slides" class="view-section">
             <div class="flex items-center gap-4 mb-6">
                 <button onclick="showView('home')" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
@@ -89,7 +138,6 @@
             </div>
 
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 md:p-6">
-                <!-- Slide Topic Selector -->
                 <div class="mb-4">
                     <label for="slide-selector" class="block text-sm font-medium text-slate-700 mb-1">Select Topic:</label>
                     <select id="slide-selector" onchange="changeSlideDeck()" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full md:w-1/2 p-2.5">
@@ -98,15 +146,12 @@
                         <option value="">Unit 5: Phillips Curve (Coming Soon)</option>
                     </select>
                 </div>
-
-                <!-- Slide Iframe -->
                 <div class="relative w-full rounded-xl overflow-hidden bg-slate-100 border border-slate-300 flex flex-col items-center justify-center" style="aspect-ratio: 16/9;">
                     <iframe id="slide-iframe" src="slide.html" class="w-full h-full border-0" allowfullscreen></iframe>
                 </div>
             </div>
         </section>
 
-        <!-- PRACTICE VIEW -->
         <section id="practice" class="view-section">
             <div class="flex items-center gap-4 mb-6">
                 <button onclick="showView('home')" class="flex items-center gap-2 text-blue-600 hover:text-blue-800 font-medium">
@@ -116,31 +161,151 @@
             </div>
 
             <div class="grid lg:grid-cols-3 gap-6">
-                <!-- Sidebar: Topic Selection -->
                 <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 h-fit">
                     <h3 class="text-lg font-bold text-slate-800 mb-4">Topics</h3>
                     <ul class="space-y-2">
-                        <li>
-                            <button class="w-full text-left px-4 py-3 bg-blue-50 text-blue-700 font-medium rounded-lg border border-blue-100">
-                                Unit 4: Financial Sector
-                            </button>
-                        </li>
-                        <li>
-                            <button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">
-                                Unit 6: Open Economy
-                            </button>
-                        </li>
-                        <li>
-                            <button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">
-                                Free Response Questions (FRQ)
-                            </button>
-                        </li>
+                        <li><button class="w-full text-left px-4 py-3 bg-blue-50 text-blue-700 font-medium rounded-lg border border-blue-100">Unit 4: Financial Sector</button></li>
+                        <li><button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">Unit 6: Open Economy</button></li>
+                        <li><button class="w-full text-left px-4 py-3 text-slate-600 hover:bg-slate-50 font-medium rounded-lg transition-colors border border-transparent hover:border-slate-200">Free Response Questions (FRQ)</button></li>
                     </ul>
                 </div>
-
-                <!-- Quiz Area -->
                 <div class="lg:col-span-2 space-y-6" id="quiz-container">
-                    <!-- JavaScript will populate questions here -->
+                    </div>
+            </div>
+        </section>
+
+        <section id="study-guides" class="view-section">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showView('home')" class="flex items-center gap-2 text-purple-600 hover:text-purple-800 font-medium">
+                    <i class="ph ph-arrow-left"></i> Back
+                </button>
+                <h2 class="text-3xl font-bold text-slate-900">Study Guides</h2>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 md:p-6">
+                <div class="mb-4">
+                    <label for="pdf-selector" class="block text-sm font-medium text-slate-700 mb-1">Select Study Guide:</label>
+                    <select id="pdf-selector" onchange="changePdf()" class="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full md:w-1/2 p-2.5">
+                        <option value="placeholder_guide_1.pdf">1. Basic Economic Concepts Outline</option>
+                        <option value="placeholder_guide_2.pdf">2. Macroeconomic Indicators Cheat Sheet</option>
+                        <option value="placeholder_guide_3.pdf">3. National Income & Price Determination</option>
+                        <option value="placeholder_guide_4.pdf">4. Financial Sector & Monetary Policy</option>
+                        <option value="placeholder_guide_5.pdf">5. Long-Run Consequences & Open Economy</option>
+                    </select>
+                </div>
+                <div class="relative w-full h-[600px] rounded-xl overflow-hidden bg-slate-100 border border-slate-300 flex flex-col items-center justify-center">
+                    <iframe id="pdf-iframe" src="placeholder_guide_1.pdf" type="application/pdf" class="w-full h-full border-0">
+                        <p class="text-slate-500 p-4 text-center">It appears your browser doesn't support embedded PDFs. <a href="#" id="pdf-fallback-link" class="text-purple-600 underline">Click here to download the PDF</a>.</p>
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="audio" class="view-section">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showView('home')" class="flex items-center gap-2 text-amber-600 hover:text-amber-800 font-medium">
+                    <i class="ph ph-arrow-left"></i> Back
+                </button>
+                <h2 class="text-3xl font-bold text-slate-900">Audio Lectures</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col justify-center items-center h-fit">
+                    <div class="w-32 h-32 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-8 shadow-inner">
+                        <i class="ph ph-speaker-hifi text-6xl"></i>
+                    </div>
+                    <h3 id="current-audio-title" class="text-2xl font-bold text-slate-800 mb-6 text-center">1. Introduction to Scarcity</h3>
+                    <audio id="main-audio-player" controls class="w-full max-w-md">
+                        <source id="audio-source" src="placeholder_audio_1.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+
+                <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden h-fit flex flex-col max-h-[500px]">
+                    <div class="p-4 bg-slate-50 border-b border-slate-200">
+                        <h3 class="font-bold text-slate-800">Audio Playlist</h3>
+                    </div>
+                    <div class="overflow-y-auto playlist-scroll p-2">
+                        <button onclick="playAudio('placeholder_audio_1.mp3', '1. Introduction to Scarcity')" class="w-full text-left p-3 hover:bg-amber-50 rounded-lg transition-colors flex gap-3 items-center group mb-1">
+                            <i class="ph ph-play-circle text-2xl text-slate-400 group-hover:text-amber-600"></i>
+                            <span class="text-sm font-medium text-slate-700">1. Introduction to Scarcity</span>
+                        </button>
+                        <button onclick="playAudio('placeholder_audio_2.mp3', '2. Circular Flow Model Explained')" class="w-full text-left p-3 hover:bg-amber-50 rounded-lg transition-colors flex gap-3 items-center group mb-1">
+                            <i class="ph ph-play-circle text-2xl text-slate-400 group-hover:text-amber-600"></i>
+                            <span class="text-sm font-medium text-slate-700">2. Circular Flow Model Explained</span>
+                        </button>
+                        <button onclick="playAudio('placeholder_audio_3.mp3', '3. The Multiplier Effect')" class="w-full text-left p-3 hover:bg-amber-50 rounded-lg transition-colors flex gap-3 items-center group mb-1">
+                            <i class="ph ph-play-circle text-2xl text-slate-400 group-hover:text-amber-600"></i>
+                            <span class="text-sm font-medium text-slate-700">3. The Multiplier Effect</span>
+                        </button>
+                        <button onclick="playAudio('placeholder_audio_4.mp3', '4. Money Creation Process')" class="w-full text-left p-3 hover:bg-amber-50 rounded-lg transition-colors flex gap-3 items-center group mb-1">
+                            <i class="ph ph-play-circle text-2xl text-slate-400 group-hover:text-amber-600"></i>
+                            <span class="text-sm font-medium text-slate-700">4. Money Creation Process</span>
+                        </button>
+                        <button onclick="playAudio('placeholder_audio_5.mp3', '5. Foreign Exchange Markets')" class="w-full text-left p-3 hover:bg-amber-50 rounded-lg transition-colors flex gap-3 items-center group">
+                            <i class="ph ph-play-circle text-2xl text-slate-400 group-hover:text-amber-600"></i>
+                            <span class="text-sm font-medium text-slate-700">5. Foreign Exchange Markets</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="video" class="view-section">
+            <div class="flex items-center gap-4 mb-6">
+                <button onclick="showView('home')" class="flex items-center gap-2 text-rose-600 hover:text-rose-800 font-medium">
+                    <i class="ph ph-arrow-left"></i> Back
+                </button>
+                <h2 class="text-3xl font-bold text-slate-900">Video Library</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6">
+                <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-4 h-fit">
+                    <div class="rounded-xl overflow-hidden bg-black aspect-video mb-4">
+                        <video id="main-video-player" controls class="w-full h-full">
+                            <source id="video-source" src="placeholder_video_1.mp4" type="video/mp4">
+                            Your browser does not support the video element.
+                        </video>
+                    </div>
+                    <h3 id="current-video-title" class="text-xl font-bold text-slate-800 px-2">1. Shifting the AD/AS Model</h3>
+                </div>
+
+                <div class="lg:col-span-1 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden h-fit flex flex-col max-h-[600px]">
+                    <div class="p-4 bg-slate-50 border-b border-slate-200">
+                        <h3 class="font-bold text-slate-800">Video Playlist</h3>
+                    </div>
+                    <div class="overflow-y-auto playlist-scroll p-2">
+                        <button onclick="playVideo('placeholder_video_1.mp4', '1. Shifting the AD/AS Model')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group mb-1">
+                            <div class="w-24 aspect-video bg-slate-200 rounded flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+                                <i class="ph ph-play text-xl text-slate-500 absolute z-10 group-hover:text-rose-600 transition-colors"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700 pt-1 leading-tight">1. Shifting the AD/AS Model</span>
+                        </button>
+                        <button onclick="playVideo('placeholder_video_2.mp4', '2. Understanding the Phillips Curve')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group mb-1">
+                            <div class="w-24 aspect-video bg-slate-200 rounded flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+                                <i class="ph ph-play text-xl text-slate-500 absolute z-10 group-hover:text-rose-600 transition-colors"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700 pt-1 leading-tight">2. Understanding the Phillips Curve</span>
+                        </button>
+                        <button onclick="playVideo('placeholder_video_3.mp4', '3. The Loanable Funds Market')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group mb-1">
+                            <div class="w-24 aspect-video bg-slate-200 rounded flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+                                <i class="ph ph-play text-xl text-slate-500 absolute z-10 group-hover:text-rose-600 transition-colors"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700 pt-1 leading-tight">3. The Loanable Funds Market</span>
+                        </button>
+                        <button onclick="playVideo('placeholder_video_4.mp4', '4. Reserve Market Graph (Ample Reserves)')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group mb-1">
+                            <div class="w-24 aspect-video bg-slate-200 rounded flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+                                <i class="ph ph-play text-xl text-slate-500 absolute z-10 group-hover:text-rose-600 transition-colors"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700 pt-1 leading-tight">4. Reserve Market Graph (Ample Reserves)</span>
+                        </button>
+                        <button onclick="playVideo('placeholder_video_5.mp4', '5. Comparative Advantage & Trade')" class="w-full text-left p-3 hover:bg-rose-50 rounded-lg transition-colors flex gap-3 items-start group">
+                            <div class="w-24 aspect-video bg-slate-200 rounded flex-shrink-0 flex items-center justify-center relative overflow-hidden">
+                                <i class="ph ph-play text-xl text-slate-500 absolute z-10 group-hover:text-rose-600 transition-colors"></i>
+                            </div>
+                            <span class="text-sm font-medium text-slate-700 pt-1 leading-tight">5. Comparative Advantage & Trade</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -153,7 +318,6 @@
         </div>
     </footer>
 
-    <!-- Custom Message Modal (Replaces standard alerts) -->
     <div id="feedback-modal" class="fixed inset-0 bg-black/50 z-[100] hidden flex items-center justify-center p-4 opacity-0 transition-opacity">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform scale-95 transition-transform duration-300" id="modal-content">
             <div class="flex justify-between items-start mb-4">
@@ -173,24 +337,24 @@
         </div>
     </div>
 
-    <!-- Application Logic -->
     <script>
         // --- Navigation Logic ---
         function showView(viewId) {
-            // Hide all views
+            // Stop media playback when navigating away
+            document.getElementById('main-video-player').pause();
+            document.getElementById('main-audio-player').pause();
+
             document.querySelectorAll('.view-section').forEach(section => {
                 section.classList.remove('active');
                 setTimeout(() => {
                     if (!section.classList.contains('active')) {
                         section.style.display = 'none';
                     }
-                }, 300); // match transition duration
+                }, 300);
             });
 
-            // Show target view
             const target = document.getElementById(viewId);
             target.style.display = 'block';
-            // Slight delay to allow display:block to apply before animating opacity
             setTimeout(() => {
                 target.classList.add('active');
             }, 10);
@@ -209,13 +373,38 @@
             }
         }
 
-        // =====================================================================
-        // QUESTION BANK - EASY TO ADD NEW QUESTIONS HERE
-        // =====================================================================
-        // To add a new question, copy one of the blocks below and paste it inside the list.
-        // Make sure to match the format exactly.
-        // Type can be "multiple_choice" or "frq".
-        // =====================================================================
+        // --- Study Guide PDF Logic ---
+        function changePdf() {
+            const selector = document.getElementById('pdf-selector');
+            const iframe = document.getElementById('pdf-iframe');
+            const fallbackLink = document.getElementById('pdf-fallback-link');
+            
+            if (selector.value) {
+                iframe.src = selector.value;
+                if(fallbackLink) fallbackLink.href = selector.value;
+            }
+        }
+
+        // --- Media Player Logic (Audio & Video) ---
+        function playAudio(src, title) {
+            const audioPlayer = document.getElementById('main-audio-player');
+            const audioTitle = document.getElementById('current-audio-title');
+            
+            audioPlayer.src = src;
+            audioTitle.innerText = title;
+            audioPlayer.play().catch(e => console.log("Autoplay prevented:", e));
+        }
+
+        function playVideo(src, title) {
+            const videoPlayer = document.getElementById('main-video-player');
+            const videoTitle = document.getElementById('current-video-title');
+            
+            videoPlayer.src = src;
+            videoTitle.innerText = title;
+            videoPlayer.play().catch(e => console.log("Autoplay prevented:", e));
+        }
+
+        // --- Question Bank ---
         const practiceQuestions = [
             {
                 id: 1,
@@ -259,7 +448,6 @@
                 correctAnswer: "B",
                 explanation: "An increase in administered rates raises interest rates. Foreign investors purchase more Norwegian assets, raising demand for the krone, which appreciates. The appreciation increases Norwegian export prices, decreasing export revenue."
             },
-            // --- FRQ EXAMPLES BELOW ---
             {
                 id: 4,
                 unit: "Unit 3",
@@ -280,7 +468,7 @@
         const quizContainer = document.getElementById('quiz-container');
 
         function renderQuestions() {
-            quizContainer.innerHTML = ''; // Clear container
+            quizContainer.innerHTML = ''; 
 
             practiceQuestions.forEach((q, index) => {
                 const questionDiv = document.createElement('div');
@@ -361,7 +549,6 @@
         function showFRQKey(questionId) {
             const question = practiceQuestions.find(q => q.id === questionId);
             showModal("FRQ Key Points", "Compare your thoughts to these key ideas:", question.explanation, true);
-            // Override the title color to be neutral/informative instead of green
             modalTitle.className = "text-xl font-bold text-slate-800";
         }
 
@@ -377,13 +564,12 @@
 
             if (explanation) {
                 modalExplanation.classList.remove('hidden');
-                explanationText.innerHTML = explanation; // Changed to innerHTML to support formatting
+                explanationText.innerHTML = explanation; 
             } else {
                 modalExplanation.classList.add('hidden');
             }
 
             modal.classList.remove('hidden');
-            // Trigger reflow to apply opacity transition
             void modal.offsetWidth;
             modal.classList.remove('opacity-0');
             modalContent.classList.remove('scale-95');
@@ -400,7 +586,6 @@
         // Initialize app
         document.addEventListener('DOMContentLoaded', () => {
             renderQuestions();
-            // Start on home view
             document.getElementById('home').style.display = 'block';
             setTimeout(() => { document.getElementById('home').classList.add('active'); }, 50);
         });

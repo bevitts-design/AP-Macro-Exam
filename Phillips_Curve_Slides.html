@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Phillips Curve - AP Macroeconomics</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f0f4f8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .presentation-container {
+        width: 800px;
+        max-width: 95vw;
+        height: 600px;
+        max-height: 90vh;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+    }
+    .slide {
+        display: none;
+        padding: 40px;
+        flex-grow: 1;
+        min-height: 0; 
+        overflow-y: auto;
+        animation: fadeIn 0.5s;
+    }
+    .slide.active {
+        display: block;
+    }
+    .slide h2 {
+        color: #2c3e50;
+        border-bottom: 3px solid #9b59b6;
+        padding-bottom: 10px;
+        margin-top: 0;
+    }
+    .slide p, .slide ul {
+        font-size: 1.1em;
+        line-height: 1.6;
+        color: #34495e;
+    }
+    .slide li {
+        margin-bottom: 10px;
+    }
+    .graph-container {
+        text-align: center;
+        margin: 20px 0;
+    }
+    .controls {
+        background: #ecf0f1;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0; 
+        border-top: 1px solid #bdc3c7;
+    }
+    button {
+        background: #9b59b6;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    button:hover {
+        background: #8e44ad;
+    }
+    button:disabled {
+        background: #bdc3c7;
+        cursor: not-allowed;
+    }
+    .progress {
+        font-weight: bold;
+        color: #7f8c8d;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .highlight {
+        font-weight: bold;
+        color: #e74c3c;
+    }
+    .box-info {
+        background-color: #f5eef8;
+        border-left: 4px solid #9b59b6;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 0 5px 5px 0;
+    }
+    /* Scrollbar styling */
+    .slide::-webkit-scrollbar { width: 8px; }
+    .slide::-webkit-scrollbar-thumb { background-color: #bdc3c7; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<div class="presentation-container">
+    
+    <!-- Slide 1 -->
+    <div class="slide active">
+        <h2>1. Introduction to the Phillips Curve</h2>
+        <p>The <strong>Phillips Curve</strong> is a foundational macroeconomic model that illustrates the relationship between two key economic indicators:</p>
+        <ul>
+            <li><strong>Inflation Rate:</strong> Plotted on the vertical (Y) axis.</li>
+            <li><strong>Unemployment Rate:</strong> Plotted on the horizontal (X) axis.</li>
+        </ul>
+        <p>It helps us visualize the trade-offs policymakers face when trying to stabilize the economy.</p>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <h2>2. The Short-Run Phillips Curve (SRPC)</h2>
+        <p>The SRPC demonstrates an <strong>inverse relationship (trade-off)</strong> between inflation and unemployment in the short run.</p>
+        <div class="graph-container">
+            <svg width="300" height="200" viewBox="0 0 250 200">
+                <!-- Axes -->
+                <line x1="30" y1="10" x2="30" y2="160" stroke="black" stroke-width="2"/>
+                <line x1="30" y1="160" x2="230" y2="160" stroke="black" stroke-width="2"/>
+                <!-- SRPC Curve -->
+                <path d="M 40 30 Q 80 120 200 140" fill="none" stroke="#3498db" stroke-width="3"/> 
+                <!-- Labels -->
+                <text x="205" y="145" font-size="12" fill="#3498db">SRPC</text>
+                <text x="-120" y="15" transform="rotate(-90)" font-size="12">Inflation Rate</text>
+                <text x="70" y="180" font-size="12">Unemployment Rate</text>
+            </svg>
+        </div>
+        <ul>
+            <li>When unemployment is high, inflation tends to be low.</li>
+            <li>When unemployment is low, inflation tends to be high.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <h2>3. The Long-Run Phillips Curve (LRPC)</h2>
+        <p>In the long run, there is <strong>no trade-off</strong> between inflation and unemployment.</p>
+        <div class="graph-container">
+            <svg width="300" height="200" viewBox="0 0 250 200">
+                <!-- Axes -->
+                <line x1="30" y1="10" x2="30" y2="160" stroke="black" stroke-width="2"/>
+                <line x1="30" y1="160" x2="230" y2="160" stroke="black" stroke-width="2"/>
+                <!-- SRPC & LRPC -->
+                <path d="M 40 30 Q 80 120 200 140" fill="none" stroke="#3498db" stroke-width="3"/> 
+                <line x1="100" y1="20" x2="100" y2="160" stroke="#e74c3c" stroke-width="3"/> 
+                <!-- Dashed line for expected inflation -->
+                <line x1="30" y1="95" x2="100" y2="95" stroke="#7f8c8d" stroke-dasharray="4"/>
+                <circle cx="100" cy="95" r="4" fill="#2c3e50"/>
+                <!-- Labels -->
+                <text x="205" y="145" font-size="12" fill="#3498db">SRPC</text>
+                <text x="90" y="15" font-size="12" fill="#e74c3c">LRPC</text>
+                <text x="105" y="175" font-size="12" fill="#e74c3c">NRU</text>
+                <text x="-120" y="15" transform="rotate(-90)" font-size="12">Inflation Rate</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>Shape:</strong> Vertical line anchored at the economy's Natural Rate of Unemployment (NRU).</li>
+            <li><strong>Intersection:</strong> The exact point where SRPC and LRPC intersect represents the <em>expected rate of inflation</em>.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide">
+        <h2>4. The Golden Rule: Movements vs. Shifts</h2>
+        <p>Knowing what causes a dot to slide along the curve vs. what shifts the entire curve is the most tested concept in Unit 5.</p>
+        <div class="box-info">
+            <p><strong>1. Movement ALONG the SRPC:</strong> Caused by a change in Aggregate Demand (AD).</p>
+            <p><strong>2. SHIFT of the entire SRPC:</strong> Caused by a change in Short-Run Aggregate Supply (SRAS) OR a change in Inflationary Expectations.</p>
+        </div>
+        <ul>
+            <li><strong>AD Increases:</strong> Unemployment falls, inflation rises &rarr; Movement UP and LEFT along SRPC.</li>
+            <li><strong>AD Decreases:</strong> Unemployment rises, inflation falls &rarr; Movement DOWN and RIGHT along SRPC.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide">
+        <h2>5. Shifting the SRPC (Stagflation)</h2>
+        <p>Changes in Aggregate Supply (SRAS) cause the SRPC to shift in the <strong>opposite direction</strong>.</p>
+        <div class="graph-container">
+            <svg width="300" height="200" viewBox="0 0 250 200">
+                <!-- Axes -->
+                <line x1="30" y1="10" x2="30" y2="160" stroke="black" stroke-width="2"/>
+                <line x1="30" y1="160" x2="230" y2="160" stroke="black" stroke-width="2"/>
+                <!-- SRPC 1 & 2 -->
+                <path d="M 40 50 Q 80 140 200 150" fill="none" stroke="#3498db" stroke-width="2"/> 
+                <path d="M 70 20 Q 120 110 220 120" fill="none" stroke="#e74c3c" stroke-width="3"/> 
+                <!-- Shift Arrow -->
+                <line x1="90" y1="80" x2="130" y2="80" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
+                <defs>
+                    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <path d="M0,0 L0,6 L9,3 z" fill="black" />
+                    </marker>
+                </defs>
+                <!-- Labels -->
+                <text x="180" y="145" font-size="12" fill="#3498db">SRPC1</text>
+                <text x="210" y="110" font-size="12" fill="#e74c3c">SRPC2</text>
+                <text x="-120" y="15" transform="rotate(-90)" font-size="12">Inflation Rate</text>
+                <text x="70" y="180" font-size="12">Unemployment Rate</text>
+            </svg>
+        </div>
+        <ul>
+            <li><strong>Negative Supply Shock (SRAS &darr;):</strong> Creates stagflation. SRPC shifts to the <strong>RIGHT</strong> (higher inflation AND higher unemployment).</li>
+            <li><strong>Positive Supply Shock (SRAS &uarr;):</strong> SRPC shifts to the <strong>LEFT</strong>.</li>
+        </ul>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide">
+        <h2>6. Shifting the SRPC (Expectations)</h2>
+        <p>The second cause of a shift in the SRPC is a change in <strong>Inflationary Expectations</strong>.</p>
+        <ul>
+            <li>If consumers and businesses <em>expect</em> higher inflation in the future, they demand higher wages now.</li>
+            <li>This increases costs for businesses, shifting SRAS left.</li>
+            <li>As a result, the <strong>SRPC shifts UP (to the right)</strong>.</li>
+            <li>If expected inflation falls, the SRPC shifts DOWN (to the left).</li>
+        </ul>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide">
+        <h2>7. Long-Run Adjustment Process</h2>
+        <p>AP FRQs love to ask how the economy self-adjusts over time. Let's trace an <strong>Inflationary Gap</strong> scenario:</p>
+        <ol>
+            <li>Govt uses expansionary policy &rarr; AD shifts right.</li>
+            <li>Unemployment falls &rarr; Economy moves UP/LEFT along the SRPC.</li>
+            <li><strong>Over time:</strong> People adjust their expectations to the new, higher inflation level.</li>
+            <li>Workers demand higher wages &rarr; SRAS shifts left.</li>
+            <li>The <strong>SRPC shifts UP/RIGHT</strong>, returning the economy to the vertical LRPC (NRU), but permanently stuck with a higher inflation rate.</li>
+        </ol>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide">
+        <h2>8. AP Exam Tips & Graphing Precision</h2>
+        <div class="box-info">
+            <p><strong>Zero Point Danger:</strong> An unlabeled or mislabeled graph earns ZERO points on the FRQ!</p>
+        </div>
+        <ul>
+            <li><strong>Axes Labels:</strong> Must be "Inflation Rate" (Y) and "Unemployment Rate" (X). <em>Do not use Price Level and Real GDP here!</em></li>
+            <li><strong>Intersection:</strong> Clearly mark the intersection of SRPC and LRPC to show expected inflation.</li>
+            <li><strong>Plot Numbers:</strong> If a prompt gives you specific numerical values (e.g., "Assume a 5% natural rate of unemployment"), you <strong>must</strong> label the LRPC at the 5% mark on the X-axis.</li>
+        </ul>
+    </div>
+
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)" disabled>Previous</button>
+        <div class="progress" id="progressText">Slide 1 of 8</div>
+        <button id="nextBtn" onclick="changeSlide(1)">Next</button>
+    </div>
+
+</div>
+
+<script>
+    let currentSlideIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const progressText = document.getElementById('progressText');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    function updatePresentation() {
+        slides.forEach((slide, index) => {
+            slide.classList.remove('active');
+            if (index === currentSlideIndex) {
+                slide.classList.add('active');
+                slide.scrollTop = 0; 
+            }
+        });
+
+        progressText.innerText = `Slide ${currentSlideIndex + 1} of ${totalSlides}`;
+        
+        prevBtn.disabled = currentSlideIndex === 0;
+        nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+    }
+
+    function changeSlide(direction) {
+        currentSlideIndex += direction;
+        if (currentSlideIndex < 0) currentSlideIndex = 0;
+        if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+        updatePresentation();
+    }
+</script>
+
+</body>
+</html>
